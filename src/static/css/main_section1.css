@@ -1,0 +1,47 @@
+.section1 {
+  position: relative;
+  color: var(--color-white);
+}
+
+.section1 .introduce {
+  height: var(--height-section1);
+  background: var(--color-blue);
+}
+
+.section1 .tit {
+  font-size: 4rem;
+  font-weight: 700;
+}
+
+.section1 .desc {
+  margin-top: calc(var(--base-space) * 4);
+  font-size: 1.6rem;
+  font-weight: 500;
+  padding-bottom: 200px;
+}
+
+.section1 .main_img {
+  width: 20vw;
+  padding-bottom: 200px;
+}
+
+.custom-shape {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.custom-shape svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 150px;
+}
+
+.custom-shape .shape-fill {
+  fill: #ffffff;
+}

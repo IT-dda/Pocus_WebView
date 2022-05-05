@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%- include("../common/include") %>
+
+    <title>Mypage</title>
+  </head>
+  <body>
+    <%- include("../common/header", {is_main: "not_main"}) %>
+
+    <main class="container">
+      <h1>마이페이지</h1>
+
+      <section>
+        <h2>시작하기</h2>
+        <div>
+          <a href="/init">
+            <button class="btn btn-primary">START Init</button>
+          </a>
+        </div>
+      </section>
+      <section>
+        <h2>회원정보 변경</h2>
+      </section>
+    </main>
+  </body>
+</html>

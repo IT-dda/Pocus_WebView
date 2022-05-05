@@ -1,0 +1,13 @@
+:root {
+  /* SIZE */
+  --base-space: 8px;
+  --height-header: 100px;
+  --height-section1: 600px;
+
+  /* COLOR */
+  --color-white: #f9f8ff;
+  --color-gray: #e7eaf5;
+  --color-black: #454555;
+  --color-blue: #3e75ff;
+  --color-purple: #8c2eff;
+}

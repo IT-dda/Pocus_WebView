@@ -1,0 +1,35 @@
+header {
+  height: var(--height-header);
+}
+
+header.is_main {
+  background: var(--color-blue);
+  color: var(--color-white);
+}
+
+header.not_main {
+  color: var(--color-blue);
+  box-shadow: 0 2px 4px #0001;
+}
+
+header.is_main a:hover {
+  color: var(--color-white);
+}
+
+header.not_main a:hover {
+  color: var(--color-blue);
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.header_menu > li {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.header_menu > li:not(:last-of-type) {
+  margin-right: calc(var(--base-space) * 2);
+}
