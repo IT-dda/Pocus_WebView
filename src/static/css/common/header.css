@@ -13,7 +13,8 @@ header.not_main {
 }
 
 header.is_main a:hover {
-  color: var(--color-white);
+  color: var(--color-orange);
+  transition: calc(var(--animation-duration) / 2) ease-in-out;
 }
 
 header.not_main a:hover {
@@ -31,5 +32,5 @@ header.not_main a:hover {
 }
 
 .header_menu > li:not(:last-of-type) {
-  margin-right: calc(var(--base-space) * 2);
+  margin-right: calc(var(--base-space) * 3);
 }
