@@ -9,19 +9,143 @@
     <%- include("../common/header", {is_main: "not_main"}) %>
 
     <main class="container">
-      <h1>마이페이지</h1>
-
-      <section>
-        <h2>시작하기</h2>
-        <div>
-          <a href="/init">
-            <button class="btn btn-primary">START Init</button>
-          </a>
+      <article class="d-flex flex-column align-items-center">
+        <h1>Mypage</h1>
+        <div class="tabBox">
+          <!-- tab 메뉴 -->
+          <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link active"
+                id="pocus-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#pocus-tab-pane"
+                type="button"
+                role="tab"
+                aria-controls="pocus-tab-pane"
+                aria-selected="true"
+              >
+                Pocus
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="profile-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#profile-tab-pane"
+                type="button"
+                role="tab"
+                aria-controls="profile-tab-pane"
+                aria-selected="false"
+              >
+                Personal Info
+              </button>
+            </li>
+          </ul>
+          <!-- tab 내용 -->
+          <div class="tab-content" id="myTabContent">
+            <!-- Pocus tab content -->
+            <div
+              class="tab-pane fade show active"
+              id="pocus-tab-pane"
+              role="tabpanel"
+              aria-labelledby="pocus-tab"
+              tabindex="0"
+            >
+              <section
+                class="pocusBox d-flex flex-column justify-content-between align-items-center"
+              >
+                <a href="/init">
+                  <button class="btn btn-primary">START Init</button>
+                </a>
+                <table class="table table-hover logTable">
+                  <thead>
+                    <tr>
+                      <th scope="col" style="width: 10%">#</th>
+                      <th scope="col" style="width: 30%">Date</th>
+                      <th scope="col" style="width: 30%">pose-md</th>
+                      <th scope="col" style="width: 30%">sensor</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row" style="width: 10%">1</th>
+                      <td style="width: 30%">2022-05-16</td>
+                      <td style="width: 30%">10, 8, 4, 1, 5</td>
+                      <td style="width: 30%">50.2, 38.4, 22.0, 31.9</td>
+                    </tr>
+                    <tr>
+                      <th scope="row" style="width: 10%">2</th>
+                      <td style="width: 30%">2022-05-16</td>
+                      <td style="width: 30%">6, 8, 4, 2, 4</td>
+                      <td style="width: 30%">40.1, 40.2, 30.2, 30.5</td>
+                    </tr>
+                    <tr>
+                      <th scope="row" style="width: 10%">3</th>
+                      <td style="width: 30%">2022-05-17</td>
+                      <td style="width: 30%">9, 7, 4, 1, 5</td>
+                      <td style="width: 30%">45.8, 33.4, 28.4, 30.7</td>
+                    </tr>
+                    <tr>
+                      <th scope="row" style="width: 10%">3</th>
+                      <td style="width: 30%">2022-05-18</td>
+                      <td style="width: 30%">9, 7, 4, 1, 5</td>
+                      <td style="width: 30%">40.1, 40.2, 30.2, 30.7</td>
+                    </tr>
+                    <tr>
+                      <th scope="row" style="width: 10%">3</th>
+                      <td style="width: 30%">2022-05-18</td>
+                      <td style="width: 30%">9, 7, 3, 1, 5</td>
+                      <td style="width: 30%">50.1, 33.4, 28.4, 30.7</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+            </div>
+            <!-- Personal Info tab content -->
+            <div
+              class="tab-pane fade"
+              id="profile-tab-pane"
+              role="tabpanel"
+              aria-labelledby="profile-tab"
+              tabindex="0"
+            >
+              <section class="d-flex flex-column align-items-center">
+                <form class="personalForm">
+                  <div class="mb-3">
+                    <label for="usernameInput" class="form-label">
+                      Username
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="usernameInput"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="emailInput" class="form-label">
+                      Email address
+                    </label>
+                    <input type="email" class="form-control" id="emailInput" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="passwordInput" class="form-label"
+                      >Password</label
+                    >
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="passwordInput"
+                    />
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+              </section>
+            </div>
+          </div>
         </div>
-      </section>
-      <section>
-        <h2>회원정보 변경</h2>
-      </section>
+      </article>
     </main>
   </body>
 </html>

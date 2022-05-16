@@ -9,10 +9,19 @@
     <%- include("../common/header", {is_main: "not_main"}) %>
 
     <main class="container">
-      <h1>LOGIN</h1>
+      <!-- <h1>LOGIN</h1>
       <div>
         <a href="/register">register</a>
-      </div>
+      </div> -->
+      <article class="d-flex flex-column align-items-center">
+        <h1>LOGIN</h1>
+        <form class="loginForm d-flex flex-column align-items-center">
+          <input type="email" class="form-control" placeholder="Email" />
+          <input type="password" class="form-control" placeholder="Password" />
+          <button type="submit" class="btn btn-primary">Login</button>
+          <a href="/register">register</a>
+        </form>
+      </article>
     </main>
   </body>
 </html>

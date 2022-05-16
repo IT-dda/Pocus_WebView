@@ -1,0 +1,26 @@
+article {
+  padding-top: calc(var(--base-space) * 7);
+}
+
+.tabBox {
+  width: 100%;
+  padding: calc(var(--base-space) * 7) 0;
+}
+
+.pocusBox {
+  padding: calc(var(--base-space) * 5) 0;
+}
+
+table.logTable {
+  margin-top: calc(var(--base-space) * 5);
+}
+
+form.personalForm {
+  margin-top: calc(var(--base-space) * 10);
+  width: 30%;
+}
+
+th,
+td {
+  text-align: center;
+}
