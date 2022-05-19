@@ -28,6 +28,10 @@ form.personal_form {
   width: 400px;
 }
 
+form.personal_form button {
+  width: 400px;
+}
+
 th,
 td {
   text-align: center;
