@@ -9,10 +9,32 @@
     <%- include("../common/header", {is_main: "not_main"}) %>
 
     <main class="container">
-      <h1>REGISTER</h1>
-      <div>
-        <a href="/login">login</a>
-      </div>
+      <section class="d-flex flex-column align-items-center register_container">
+        <h1>REGISTER</h1>
+        <form class="d-flex flex-column align-items-center register_form">
+          <input type="text" class="form-control" placeholder="ID" />
+          <input type="password" class="form-control" placeholder="Password" />
+          <input type="text" class="form-control" placeholder="Nickname" />
+          <input type="date" class="form-control" placeholder="Birthday" />
+          <div class="input-group mb-3">
+            <label class="input-group-text" for="gender">Gender</label>
+            <select class="form-select" id="gender">
+              <option selected value="female">Female</option>
+              <option value="male">Male</option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text">Height</span>
+            <input type="number" class="form-control mb-0" placeholder="cm" />
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text">Weight</span>
+            <input type="number" class="form-control mb-0" placeholder="kg" />
+          </div>
+          <button type="submit" class="btn btn-primary">Register</button>
+          <a href="/login">Go to Login</a>
+        </form>
+      </section>
     </main>
   </body>
 </html>
