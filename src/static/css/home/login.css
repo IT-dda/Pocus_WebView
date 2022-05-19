@@ -1,21 +1,26 @@
+.register_container,
 .login_container {
   padding-top: calc(var(--base-space) * 7);
 }
 
+.register_form,
 .login_form {
   margin-top: calc(var(--base-space) * 5);
   width: 400px;
 }
 
+.register_form input,
 .login_form input {
   margin-bottom: calc(var(--base-space) * 2);
 }
 
+.register_form button,
 .login_form button {
   width: 100%;
   margin-bottom: calc(var(--base-space) * 2);
 }
 
+.register_form a,
 .login_form a {
   color: var(--color-black);
 }
