@@ -1,23 +1,35 @@
-article {
+.mypage_container {
   padding-top: calc(var(--base-space) * 7);
 }
 
-.tabBox {
+.tab_box {
   width: 100%;
   padding: calc(var(--base-space) * 7) 0;
 }
 
-.pocusBox {
+.pocus_box {
   padding: calc(var(--base-space) * 5) 0;
 }
 
-table.logTable {
+table.log_table {
   margin-top: calc(var(--base-space) * 5);
 }
 
-form.personalForm {
-  margin-top: calc(var(--base-space) * 10);
+table.log_table .w_10 {
+  width: 10%;
+}
+
+table.log_table .w_30 {
   width: 30%;
+}
+
+form.personal_form {
+  margin-top: calc(var(--base-space) * 10);
+  width: 400px;
+}
+
+form.personal_form button {
+  width: 400px;
 }
 
 th,

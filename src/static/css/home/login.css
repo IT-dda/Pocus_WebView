@@ -1,20 +1,21 @@
-article {
+.login_container {
   padding-top: calc(var(--base-space) * 7);
 }
 
-.loginForm {
+.login_form {
   margin-top: calc(var(--base-space) * 5);
-  width: 30%;
+  width: 400px;
 }
-.loginForm input {
+
+.login_form input {
   margin-bottom: calc(var(--base-space) * 2);
 }
 
-.loginForm button {
+.login_form button {
   width: 100%;
   margin-bottom: calc(var(--base-space) * 2);
 }
 
-.loginForm a {
+.login_form a {
   color: var(--color-black);
 }
