@@ -9,9 +9,9 @@
     <%- include("../common/header", {is_main: "not_main"}) %>
 
     <main class="container">
-      <article class="d-flex flex-column align-items-center">
+      <section class="d-flex flex-column align-items-center mypage_container">
         <h1>Mypage</h1>
-        <div class="tabBox">
+        <div class="tab_box">
           <!-- tab 메뉴 -->
           <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
@@ -46,73 +46,58 @@
           <!-- tab 내용 -->
           <div class="tab-content" id="myTabContent">
             <!-- Pocus tab content -->
-            <div
+            <section
               class="tab-pane fade show active"
               id="pocus-tab-pane"
               role="tabpanel"
               aria-labelledby="pocus-tab"
               tabindex="0"
             >
-              <section
-                class="pocusBox d-flex flex-column justify-content-between align-items-center"
+              <div
+                class="pocus_box d-flex flex-column justify-content-between align-items-center"
               >
                 <a href="/init">
                   <button class="btn btn-primary">START Init</button>
                 </a>
-                <table class="table table-hover logTable">
+
+                <% let logs = [ { "date":"2022.05.16", "mp":"1, 2, 3, 4",
+                "ss":"2, 3, 4, 5" }, { "date":"2022.05.17", "mp":"1, 2, 3, 4",
+                "ss":"2, 3, 4, 5" }, { "date":"2022.05.18", "mp":"1, 2, 3, 4",
+                "ss":"2, 3, 4, 5" }, { "date":"2022.05.19", "mp":"1, 2, 3, 4",
+                "ss":"2, 3, 4, 5" } ] %>
+
+                <table class="table table-hover log_table">
                   <thead>
                     <tr>
-                      <th scope="col" style="width: 10%">#</th>
-                      <th scope="col" style="width: 30%">Date</th>
-                      <th scope="col" style="width: 30%">pose-md</th>
-                      <th scope="col" style="width: 30%">sensor</th>
+                      <th scope="col" class="w_10">No</th>
+                      <th scope="col" class="w_30">Date</th>
+                      <th scope="col" class="w_30">MediaPipe</th>
+                      <th scope="col" class="w_30">Sensor</th>
                     </tr>
                   </thead>
                   <tbody>
+                    <% for (let i=0; i < logs.length; i++) { %>
                     <tr>
-                      <th scope="row" style="width: 10%">1</th>
-                      <td style="width: 30%">2022-05-16</td>
-                      <td style="width: 30%">10, 8, 4, 1, 5</td>
-                      <td style="width: 30%">50.2, 38.4, 22.0, 31.9</td>
+                      <th scope="row" class="w_10"><%= i+1 %></th>
+                      <td class="w_30"><%= logs[i].date %></td>
+                      <td class="w_30"><%= logs[i].mp %></td>
+                      <td class="w_30"><%= logs[i].ss %></td>
                     </tr>
-                    <tr>
-                      <th scope="row" style="width: 10%">2</th>
-                      <td style="width: 30%">2022-05-16</td>
-                      <td style="width: 30%">6, 8, 4, 2, 4</td>
-                      <td style="width: 30%">40.1, 40.2, 30.2, 30.5</td>
-                    </tr>
-                    <tr>
-                      <th scope="row" style="width: 10%">3</th>
-                      <td style="width: 30%">2022-05-17</td>
-                      <td style="width: 30%">9, 7, 4, 1, 5</td>
-                      <td style="width: 30%">45.8, 33.4, 28.4, 30.7</td>
-                    </tr>
-                    <tr>
-                      <th scope="row" style="width: 10%">3</th>
-                      <td style="width: 30%">2022-05-18</td>
-                      <td style="width: 30%">9, 7, 4, 1, 5</td>
-                      <td style="width: 30%">40.1, 40.2, 30.2, 30.7</td>
-                    </tr>
-                    <tr>
-                      <th scope="row" style="width: 10%">3</th>
-                      <td style="width: 30%">2022-05-18</td>
-                      <td style="width: 30%">9, 7, 3, 1, 5</td>
-                      <td style="width: 30%">50.1, 33.4, 28.4, 30.7</td>
-                    </tr>
+                    <% } %>
                   </tbody>
                 </table>
-              </section>
-            </div>
+              </div>
+            </section>
             <!-- Personal Info tab content -->
-            <div
+            <section
               class="tab-pane fade"
               id="profile-tab-pane"
               role="tabpanel"
               aria-labelledby="profile-tab"
               tabindex="0"
             >
-              <section class="d-flex flex-column align-items-center">
-                <form class="personalForm">
+              <div class="d-flex flex-column align-items-center">
+                <form class="personal_form">
                   <div class="mb-3">
                     <label for="usernameInput" class="form-label">
                       Username
@@ -139,13 +124,17 @@
                       id="passwordInput"
                     />
                   </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary">
+                      Submit
+                    </button>
+                  </div>
                 </form>
-              </section>
-            </div>
+              </div>
+            </section>
           </div>
         </div>
-      </article>
+      </section>
     </main>
   </body>
 </html>
