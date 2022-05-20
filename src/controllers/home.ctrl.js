@@ -1,23 +1,23 @@
-"use strict";
+'use strict';
 
 const output = {
   home: (req, res) => {
-    res.render("home/index");
+    res.render('pages/index');
   },
   login: (req, res) => {
-    res.render("home/login");
+    res.render('pages/login');
   },
   register: (req, res) => {
-    res.render("home/register");
+    res.render('pages/register');
   },
   mypage: (req, res) => {
-    res.render("home/mypage");
+    res.render('pages/mypage');
   },
   init: (req, res) => {
-    res.render("home/init");
+    res.render('pages/init');
   },
   pocus: (req, res) => {
-    res.render("home/pocus");
+    res.render('pages/pocus');
   },
 };
 
