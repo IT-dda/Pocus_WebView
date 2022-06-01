@@ -7,7 +7,7 @@ $login_btn.addEventListener('click', function () {
   let inputData = { id: id, password: password };
   ajax_send('http://localhost:8000/login', inputData);
 
-  async function ajax_send(url, inputData) {
+  function ajax_send(url, inputData) {
     let data = JSON.stringify(inputData);
     let xhr = new XMLHttpRequest();
     xhr.open('POST', url);

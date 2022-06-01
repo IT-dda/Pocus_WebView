@@ -1,8 +1,6 @@
 const $register_btn = document.querySelector('.register_btn');
 const $register_result = document.querySelector('.register_result');
 
-console.log($register_result);
-
 $register_btn.addEventListener('click', function () {
   let id = document.forms[0].elements[0].value;
   let password = document.forms[0].elements[1].value;

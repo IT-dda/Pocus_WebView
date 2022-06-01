@@ -12,11 +12,8 @@ const output = {
     res.render('pages/login');
   },
   login_post: (req, res) => {
-    console.log('login post!!!!!!!!!!!!!!!!!!!!!!!!!');
-
     const id = req.body.id;
     const password = req.body.password;
-    let sql_insert = { id: id, password: password };
 
     connection.query(
       'select * from user where id=?',
