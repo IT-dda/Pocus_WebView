@@ -8,19 +8,6 @@ let db_info = {
   database: 'pocus',
 };
 
-// module.exports = {
-//   db_info,
-//   init: function () {
-//     return mysql.createConnection(db_info);
-//   },
-//   connect: function (connection) {
-//     connection.connect(function (err) {
-//       if (err) console.error('mysql connection error : ' + err);
-//       else console.log('mysql is connected successfully!');
-//     });
-//   },
-// };
-
 let db = mysql.createConnection(db_info);
 db.connect();
 module.exports = db;

@@ -7,6 +7,7 @@ const ctrl = require('../controllers/home.ctrl');
 
 router.get('/', ctrl.output.home);
 router.get('/login', ctrl.output.login);
+router.post('/login', ctrl.output.login_post);
 router.get('/logout', ctrl.output.logout);
 router.get('/register', ctrl.output.register);
 router.post('/register', ctrl.output.register_post);
