@@ -22,32 +22,22 @@ const output = {
       'select * from user where id=?',
       [id],
       function (err, rows) {
-        if (rows.length) {
-          if (rows[0].id === id) {
-            connection.query(
-              'select * from user where password=?',
-              [password],
-              function (err, rows) {
-                if (err) {
-                  throw err;
-                }
+        console.log(rows);
+        console.log(rows[0]);
 
-                if (rows.length) {
-                  console.log(req.session);
-                  req.session.uid = rows[0].id;
-                  req.session.upassword = rows[0].password;
-                  req.session.isLogined = true;
-                  req.session.save(function () {
-                    res.json({ result: 'ok' });
-                  });
-                } else {
-                  res.json({ result: 'pwfalse' });
-                }
-              }
-            );
+        if (rows.length) {
+          if (rows[0].id === id && rows[0].password === password) {
+            // success login
+            req.session.uid = rows[0].id;
+            req.session.upassword = rows[0].password;
+            req.session.isLogined = true;
+            req.session.save(function () {
+              res.json({ result: 'ok' });
+            });
+            console.log(req.session);
           } else {
-            // id 잘못됨
-            res.json({ result: 'idfalse' });
+            // fail login
+            res.json({ result: 'false' });
           }
         }
       }
@@ -82,7 +72,7 @@ const output = {
             sql_insert,
             function (err, rows) {
               if (err) throw err;
-              console.log('ok');
+              console.log('register db ok');
               res.json({ result: 'ok' });
             }
           );

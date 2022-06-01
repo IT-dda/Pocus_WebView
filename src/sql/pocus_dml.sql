@@ -21,3 +21,6 @@ select * from ss;
 insert into initss (user_id, ss_id) values (1, 1);
 insert into initss (user_id, ss_id) values (2, 2);
 select * from initss;
+
+
+delete * from user;

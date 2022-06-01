@@ -1,4 +1,9 @@
-document.querySelector('.register_btn').addEventListener('click', function () {
+const $register_btn = document.querySelector('.register_btn');
+const $register_result = document.querySelector('.register_result');
+
+console.log($register_result);
+
+$register_btn.addEventListener('click', function () {
   let id = document.forms[0].elements[0].value;
   let password = document.forms[0].elements[1].value;
   let inputData = { id: id, password: password };
@@ -7,17 +12,20 @@ document.querySelector('.register_btn').addEventListener('click', function () {
   function ajax_send(url, inputData) {
     let data = JSON.stringify(inputData);
     let xhr = new XMLHttpRequest();
-    xhr.open('POST', url, true);
+    xhr.open('POST', url);
     xhr.setRequestHeader('Content-type', 'application/json');
     xhr.send(data);
 
     xhr.addEventListener('load', function () {
       let result = JSON.parse(xhr.responseText);
       console.log(result);
+
       if (result.result === 'fail') {
-        document.querySelector('.result').innerHTML = '실패';
+        console.log('failfailfail');
+        $register_result.innerText = '회원가입 실패';
       } else {
-        document.querySelector('.result').innerHTML = '성공';
+        console.log('okokokok');
+        $register_result.innerText = '회원가입 성공';
       }
     });
   }
