@@ -12,9 +12,14 @@
       <section class="d-flex flex-column align-items-center register_container">
         <h1>REGISTER</h1>
         <form class="d-flex flex-column align-items-center register_form">
-          <input type="text" class="form-control" placeholder="ID" />
-          <input type="password" class="form-control" placeholder="Password" />
-          <input type="text" class="form-control" placeholder="Nickname" />
+          <input type="text" name="id" class="form-control" placeholder="ID" />
+          <input
+            type="password"
+            name="password"
+            class="form-control"
+            placeholder="Password"
+          />
+          <!-- <input type="text" class="form-control" placeholder="Nickname" />
           <input type="date" class="form-control" placeholder="Birthday" />
           <div class="input-group mb-3">
             <label class="input-group-text" for="gender">Gender</label>
@@ -30,11 +35,12 @@
           <div class="input-group mb-3">
             <span class="input-group-text">Weight</span>
             <input type="number" class="form-control mb-0" placeholder="kg" />
-          </div>
-          <button type="submit" class="btn btn-primary">Register</button>
+          </div> -->
+          <button class="btn btn-primary register_btn">Register</button>
           <a href="/login">Go to Login</a>
         </form>
       </section>
+      <div class="result"></div>
     </main>
   </body>
 </html>

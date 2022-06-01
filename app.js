@@ -3,7 +3,12 @@
 // 모듈
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const app = express();
+
+// const db_config = require(__dirname + '/src/config/database.js');
+// const connection = db_config.init();
+// db_config.connect(connection);
 
 // 라우팅
 const home = require('./src/routes');
