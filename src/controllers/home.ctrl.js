@@ -20,6 +20,7 @@ const output = {
   login: (req, res) => {
     res.render('pages/login', {
       is_logined: false,
+      login_result: null,
     });
   },
   login_post: (req, res) => {
@@ -51,7 +52,7 @@ const output = {
         });
       } else {
         console.log('로그인 실패');
-        res.render('pages/login', { is_logined: false });
+        res.render('pages/login', { is_logined: false, login_result: 'fail' });
       }
     });
   },
@@ -65,6 +66,7 @@ const output = {
   register: (req, res) => {
     res.render('pages/register', {
       is_logined: false,
+      register_result: null,
     });
   },
   register_post: (req, res) => {
