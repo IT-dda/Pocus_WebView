@@ -6,15 +6,24 @@
     <title>Login</title>
   </head>
   <body>
-    <%- include("../common/header", {is_main: "not_main"}) %>
+    <%- include("../common/header", {is_main: "not_main", is_logined:
+    is_logined}) %>
 
     <main class="container">
       <section class="d-flex flex-column align-items-center login_container">
         <h1>LOGIN</h1>
-        <form class="d-flex flex-column align-items-center login_form">
-          <input type="text" class="form-control" placeholder="ID" />
-          <input type="password" class="form-control" placeholder="Password" />
-          <button type="submit" class="btn btn-primary">Login</button>
+        <form
+          method="POST"
+          class="d-flex flex-column align-items-center login_form"
+        >
+          <input type="text" name="id" class="form-control" placeholder="ID" />
+          <input
+            type="password"
+            name="password"
+            class="form-control"
+            placeholder="Password"
+          />
+          <button type="submit" class="btn btn-primary login_btn">Login</button>
           <a href="/register">Go to Register</a>
         </form>
       </section>

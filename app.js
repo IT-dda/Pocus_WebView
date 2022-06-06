@@ -3,6 +3,13 @@
 // 모듈
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const fs = require('fs');
+const mysql = require('mysql');
+const path = require('path');
+const session = require('express-session');
+// const crypto = require('crypto');
+const FileStore = require('session-file-store')(session);
 const app = express();
 
 // 라우팅
@@ -15,7 +22,14 @@ app.set('view engine', 'ejs');
 app.use(express.static(`${__dirname}/src/static`)); // __dirname: app.js 위치 반환
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); // url을 통해 전달되는 데이터에 한글, 공백 등의 문자가 포함될 경우 제대로 인식되지 않는 문제 해결
-
+app.use(
+  session({
+    secret: 'blackzat', // 데이터를 암호화 옵션
+    resave: false, // 요청이 왔을때 세션을 수정하지 않더라도 다시 저장소에 저장되도록
+    saveUninitialized: true, // 세션이 필요하면 세션을 실행(서버에 부담을 줄이기 위해)
+    store: new FileStore(), // 세션이 데이터를 저장할 곳
+  })
+);
 app.use('/', home);
 
 module.exports = app;
