@@ -6,15 +6,27 @@
     <title>Register</title>
   </head>
   <body>
-    <%- include("../common/header", {is_main: "not_main"}) %>
+    <%- include("../common/header", {is_main: "not_main", is_logined:
+    is_logined}) %>
 
     <main class="container">
       <section class="d-flex flex-column align-items-center register_container">
         <h1>REGISTER</h1>
-        <form class="d-flex flex-column align-items-center register_form">
-          <input type="text" class="form-control" placeholder="ID" />
-          <input type="password" class="form-control" placeholder="Password" />
-          <input type="text" class="form-control" placeholder="Nickname" />
+        <form
+          method="POST"
+          class="d-flex flex-column align-items-center register_form"
+        >
+          <p class="mb-4 register_err_msg <%= register_result %>">
+            회원가입에 실패했습니다. 다시 시도해주세요!😅
+          </p>
+          <input type="text" name="id" class="form-control" placeholder="ID" />
+          <input
+            type="password"
+            name="password"
+            class="form-control"
+            placeholder="Password"
+          />
+          <!-- <input type="text" class="form-control" placeholder="Nickname" />
           <input type="date" class="form-control" placeholder="Birthday" />
           <div class="input-group mb-3">
             <label class="input-group-text" for="gender">Gender</label>
@@ -30,8 +42,10 @@
           <div class="input-group mb-3">
             <span class="input-group-text">Weight</span>
             <input type="number" class="form-control mb-0" placeholder="kg" />
-          </div>
-          <button type="submit" class="btn btn-primary">Register</button>
+          </div> -->
+          <button type="submit" class="btn btn-primary register_btn">
+            Register
+          </button>
           <a href="/login">Go to Login</a>
         </form>
       </section>

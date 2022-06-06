@@ -24,3 +24,14 @@
 .login_form a {
   color: var(--color-black);
 }
+
+.login_err_msg,
+.register_err_msg {
+  display: none;
+}
+
+/* .register_err_msg.fail { */
+.login_err_msg.fail {
+  display: block;
+  color: red;
+}
