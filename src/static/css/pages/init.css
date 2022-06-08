@@ -1,0 +1,81 @@
+.init_tit {
+  position: relative;
+  margin-bottom: calc(var(--base-space) * 10);
+}
+
+.init_tit > .btn_gotoback {
+  position: absolute;
+  left: 0;
+  font-size: 2rem;
+}
+
+.init_tit > .btn_gotoback:hover {
+  cursor: pointer;
+}
+
+.init_tit > h1 {
+  margin-bottom: calc(var(--base-space) * 3);
+  line-height: 1.2;
+}
+
+.init_tit > p {
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+.init_body {
+  height: 500px;
+  margin-bottom: calc(var(--base-space) * 5);
+}
+
+.init_body p {
+  margin-bottom: calc(var(--base-space) * 5);
+  font-weight: bold;
+}
+
+.init_body p.complete {
+  color: var(--color-green);
+}
+
+.init_body p.incomplete {
+  color: var(--color-red);
+}
+
+.init_body input {
+  width: 8rem;
+  margin-left: var(--base-space);
+  border: none;
+  background: transparent;
+  border-bottom: 2px solid var(--color-black);
+}
+
+.example_box > img {
+  width: 100%;
+}
+
+.example_box > .timer_box {
+  padding: calc(var(--base-space) * 3) calc(var(--base-space) * 4);
+  border-radius: 5px;
+  background: var(--color-white);
+  color: var(--color-darkblack);
+  font-size: 1.2rem;
+  word-break: break-all;
+}
+
+.example_box > .timer_box > p {
+  font-weight: 500;
+  margin-bottom: calc(var(--base-space) * 2);
+}
+
+.upper_box,
+.lower_box {
+  position: relative;
+}
+
+.upper_box > div,
+.lower_box > div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
