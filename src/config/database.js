@@ -9,5 +9,8 @@ const db_info = {
 };
 
 const db = mysql.createConnection(db_info);
-db.connect();
+db.connect(function (err) {
+  if (err) console.error('mysql connection failed : ' + err);
+  else console.log('mysql connection success');
+});
 module.exports = db;
