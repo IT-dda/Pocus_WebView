@@ -6,8 +6,8 @@
     <title>Login</title>
   </head>
   <body>
-    <%- include("../common/header", {is_main: "not_main", is_logined:
-    is_logined}) %>
+    <%- include("../common/header", {isMain: "notMain", isLogined: isLogined})
+    %>
 
     <main class="container">
       <section class="d-flex flex-column align-items-center login_container">
@@ -16,9 +16,10 @@
           method="POST"
           class="d-flex flex-column align-items-center login_form"
         >
-          <p class="mb-4 login_err_msg <%= login_result %>">
+          <p class="mb-4 login_err_msg <%= loginResult %>">
             로그인에 실패했습니다. 다시 시도해주세요!😅
           </p>
+          <% console.log('loginResult : ' + loginResult) %>
           <input type="text" name="id" class="form-control" placeholder="ID" />
           <input
             type="password"

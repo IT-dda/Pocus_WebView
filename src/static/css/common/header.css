@@ -2,22 +2,22 @@ header {
   height: var(--height-header);
 }
 
-header.is_main {
+header.isMain {
   background: var(--color-blue);
   color: var(--color-white);
 }
 
-header.not_main {
+header.notMain {
   color: var(--color-blue);
   box-shadow: 0 2px 4px #0001;
 }
 
-header.is_main a:hover {
+header.isMain a:hover {
   color: var(--color-orange);
   transition: calc(var(--animation-duration) / 2) ease-in-out;
 }
 
-header.not_main a:hover {
+header.notMain a:hover {
   color: var(--color-blue);
 }
 
