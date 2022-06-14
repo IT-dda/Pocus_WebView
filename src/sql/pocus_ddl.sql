@@ -5,11 +5,11 @@ CREATE table User (
     user_id int not null auto_increment,
     id varchar(20) not null unique,
     password varchar(20) not null,
-    nickname varchar(20) not null default 'user',
-    birthday date not null,
-    gender int(1) not null check (gender IN (0, 1)),
-    height int(3) not null,
-    weight int(3) not null,
+    -- nickname varchar(20) not null default 'user',
+    -- birthday date not null,
+    -- gender int(1) not null check (gender IN (0, 1)),
+    -- height int(3) not null,
+    -- weight int(3) not null,
 
     primary key (user_id)
 );

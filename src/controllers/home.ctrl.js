@@ -1,108 +1,114 @@
 // 'use strict';
 
-const client = require('../config/database');
+const db = require('../config/database');
 
 const output = {
   home: (req, res) => {
-    console.log('메인페이지 작동');
-    console.log(req.session);
-    if (req.session.is_logined == true) {
-      res.render('pages/index', {
-        is_logined: req.session.is_logined,
-        id: req.session.id,
-      });
-    } else {
-      res.render('pages/index', {
-        is_logined: false,
-      });
-    }
+    console.log('GET / is running...');
+    res.render('pages/index', {
+      isLogined: req.session.isLogined,
+    });
   },
   login: (req, res) => {
+    console.log('GET /login is running...');
     res.render('pages/login', {
-      is_logined: false,
-      login_result: null,
+      isLogined: req.session.isLogined,
+      loginResult: req.flash('loginResult'),
     });
   },
   login_post: (req, res) => {
-    const body = req.body;
-    const id = body.id;
-    const password = body.password;
+    console.log('POST /login is running...');
 
-    client.query('select * from user where id=?', [id], (err, data) => {
-      // 로그인 확인
-      console.log(data[0]);
-      console.log(id);
-      console.log(data[0].id);
-      console.log(data[0].password);
-      console.log(id == data[0].id);
-      console.log(password == data[0].password);
-      if (id == data[0].id && password == data[0].password) {
-        console.log('로그인 성공');
-        // 세션에 추가
-        req.session.is_logined = true;
-        req.session.id = data[0].id;
-        req.session.password = data[0].password;
-        req.session.save(function () {
-          // 세션 스토어에 적용하는 작업
-          res.render('pages/index', {
-            // 정보전달
-            id: data[0].id,
-            is_logined: true,
+    let loginParam = [req.body.id, req.body.password];
+
+    db.query('select * from user where id=?', loginParam[0], (err, row) => {
+      if (err) console.error('error on finding user with id : ' + err);
+
+      if (row.length > 0) {
+        console.log('id exists');
+
+        if (loginParam[1] === row[0].password) {
+          console.log('login success');
+          req.session.isLogined = true;
+          req.session.loginData = loginParam[0];
+          req.session.save((err) => {
+            if (err) console.error('cant save session : ' + err);
           });
-        });
+          res.redirect('/');
+        } else {
+          console.log('wrong password');
+          req.flash('loginResult', 'fail');
+          res.redirect('/login');
+        }
       } else {
-        console.log('로그인 실패');
-        res.render('pages/login', { is_logined: false, login_result: 'fail' });
+        console.log('id not exists');
+        req.flash('loginResult', 'fail');
+        res.redirect('/login');
       }
     });
   },
   logout: (req, res) => {
-    console.log('로그아웃 성공');
-    req.session.destroy(function (err) {
-      // 세션 파괴후 할 것들
-      res.redirect('/');
-    });
+    console.log('GET /logout is running...');
+
+    // TODO: if문 안걸고 그냥 다 destroy 해도 되긴 될듯
+    if (req.session.isLogined) {
+      req.session.destroy((err) => {
+        if (err) console.error('logout error : ' + err);
+      });
+      console.log('logout success');
+    } else {
+      console.log('no information to logout');
+    }
+    res.redirect('/');
   },
   register: (req, res) => {
+    console.log('GET /register is running...');
     res.render('pages/register', {
-      is_logined: false,
-      register_result: null,
+      isLogined: req.session.isLogined,
+      registerResult: req.flash('registerResult'),
     });
   },
   register_post: (req, res) => {
-    console.log('회원가입 하는 중 ...');
-    const body = req.body;
-    const id = body.id;
-    const password = body.password;
+    console.log('POST /register is running...');
 
-    client.query('select * from user where id=?', [id], (err, data) => {
-      if (data.length == 0) {
-        console.log('회원가입 성공');
-        client.query('insert into user(id, password) values(?,?)', [
-          id,
-          password,
-        ]);
+    let registerParam = [req.body.id, req.body.password];
+
+    db.query('select * from user where id=?', registerParam[0], (err, row) => {
+      if (err) console.error('error on select : ' + err);
+
+      if (row.length == 0) {
+        db.query(
+          'insert into user(id, password) values(?,?)',
+          registerParam,
+          (err, row) => {
+            if (err) console.error('error on insert : ' + err);
+          }
+        );
+        console.log('registration success');
         res.redirect('/login');
       } else {
-        console.log('회원가입 실패');
-        // res.send('<script>alert("회원가입 실패");</script>');
+        console.log('id already exists');
+        req.flash('registerResult', 'fail');
         res.redirect('/register');
       }
     });
   },
   mypage: (req, res) => {
+    console.log('GET /mypage is running...');
     res.render('pages/mypage', {
-      is_logined: true,
+      isLogined: req.session.isLogined,
     });
   },
   init: (req, res) => {
+    console.log('GET /init is running...');
     res.render('pages/init', {
-      is_logined: true,
+      isLogined: req.session.isLogined,
     });
   },
   pocus: (req, res) => {
+    console.log('GET /pocus is running...');
     res.render('pages/pocus', {
-      is_logined: true,
+      isLogined: req.session.isLogined,
     });
   },
 };
