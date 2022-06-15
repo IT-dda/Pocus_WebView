@@ -33,17 +33,27 @@ const output = {
           req.session.loginData = loginParam[0];
           req.session.save((err) => {
             if (err) console.error('cant save session : ' + err);
+            return req.session.save(() => {
+              res.redirect('/');
+            });
           });
-          res.redirect('/');
         } else {
-          console.log('wrong password');
-          req.flash('loginResult', 'fail');
-          res.redirect('/login');
+          req.session.save(() => {
+            console.log('wrong password');
+            req.flash('loginResult', 'fail');
+            return req.session.save(() => {
+              res.redirect('/login');
+            });
+          });
         }
       } else {
-        console.log('id not exists');
-        req.flash('loginResult', 'fail');
-        res.redirect('/login');
+        req.session.save(() => {
+          console.log('id not exists');
+          req.flash('loginResult', 'fail');
+          return req.session.save(() => {
+            res.redirect('/login');
+          });
+        });
       }
     });
   },
@@ -87,9 +97,13 @@ const output = {
         console.log('registration success');
         res.redirect('/login');
       } else {
-        console.log('id already exists');
-        req.flash('registerResult', 'fail');
-        res.redirect('/register');
+        req.session.save(() => {
+          console.log('id already exists');
+          req.flash('registerResult', 'fail');
+          return req.session.save(() => {
+            res.redirect('/register');
+          });
+        });
       }
     });
   },
@@ -97,6 +111,7 @@ const output = {
     console.log('GET /mypage is running...');
     res.render('pages/mypage', {
       isLogined: req.session.isLogined,
+      username: req.session.loginData,
     });
   },
   init: (req, res) => {
