@@ -6,10 +6,13 @@
   /* COLOR */
   --color-white: #f9f8ff;
   --color-gray: #e7eaf5;
+  --color-darkblack: #21252b;
   --color-black: #454555;
   --color-blue: #3e75ff;
   --color-purple: #8c2eff;
   --color-orange: #ffc65c;
+  --color-red: #f22851;
+  --color-green: #009e63;
 
   /* COLOR-ALPHA */
   --color-black20: #45455520;

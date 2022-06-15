@@ -1,0 +1,38 @@
+.setting_btns > .btn_power_off,
+.setting_btns > .btn_gear {
+  margin-right: calc(var(--base-space) * 2);
+  font-size: 2.4rem;
+}
+
+.setting_btns > .btn_power_off:hover,
+.setting_btns > .btn_gear:hover {
+  cursor: pointer;
+  transition: 0.4s color;
+}
+
+.setting_btns > .btn_power_off:hover {
+  color: var(--color-red);
+}
+
+.setting_btns > .btn_gear:hover {
+  color: var(--color-blue);
+}
+
+.pocus_body {
+  height: 550px;
+  margin: calc(var(--base-space) * 10) 0;
+}
+
+.pocus_body p {
+  margin-bottom: calc(var(--base-space) * 5);
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.upper_box > div,
+.lower_box > div {
+  display: flex;
+  flex-direction: column;
+  /* margin-top: calc(var(--base-space) * 2); */
+  background: #eee;
+}
