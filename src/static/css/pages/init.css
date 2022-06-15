@@ -49,11 +49,11 @@
   border-bottom: 2px solid var(--color-black);
 }
 
-.example_box > img {
+.init_page .example_box > img {
   width: 100%;
 }
 
-.example_box > .timer_box {
+.init_page .example_box > .timer_box {
   padding: calc(var(--base-space) * 3) calc(var(--base-space) * 4);
   border-radius: 5px;
   background: var(--color-white);
@@ -62,20 +62,22 @@
   word-break: break-all;
 }
 
-.example_box > .timer_box > p {
+.init_page .example_box > .timer_box > p {
   font-weight: 500;
   margin-bottom: calc(var(--base-space) * 2);
 }
 
-.upper_box,
-.lower_box {
+.init_page .upper_box,
+.init_page .lower_box {
   position: relative;
+  margin: 0 var(--base-space);
 }
 
-.upper_box > div,
-.lower_box > div {
+.init_page .upper_box > div,
+.init_page .lower_box > div {
   position: absolute;
   top: 50%;
   left: 50%;
+  background: #eee;
   transform: translate(-50%, -50%);
 }

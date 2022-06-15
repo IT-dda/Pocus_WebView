@@ -5,12 +5,25 @@
 
     <title>Pocus</title>
   </head>
-  <body>
-    <%- include("../common/header", {is_main: "not_main", is_logined:
-    is_logined}) %>
-
+  <body class="d-flex align-items-center body_pocus bg_darkblack color_white">
     <main class="container">
-      <h1>POCUS ZOOM</h1>
+      <h1 class="text-center">POCUS VIDEO 📹</h1>
+
+      <section class="row pocus_body">
+        <article class="col-6 d-flex flex-column upper_box">
+          <p class="text-center">Upper body</p>
+          <div class="flex-grow-1">d</div>
+        </article>
+        <article class="h-100 col-6 d-flex flex-column lower_box">
+          <p class="text-center">Lower body</p>
+          <div class="flex-grow-1">d</div>
+        </article>
+      </section>
+
+      <div class="setting_btns">
+        <span class="btn_power_off"><i class="fa-solid fa-power-off"></i></span>
+        <span class="btn_gear"><i class="fa-solid fa-gear"></i></span>
+      </div>
     </main>
   </body>
 </html>

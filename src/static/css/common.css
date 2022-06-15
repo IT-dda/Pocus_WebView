@@ -25,3 +25,7 @@ a:hover {
 .color_blue {
   color: var(--color-blue);
 }
+
+body.swal2-height-auto {
+  height: 100vh !important;
+}
