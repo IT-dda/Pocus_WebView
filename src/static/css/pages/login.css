@@ -30,7 +30,7 @@
   display: none;
 }
 
-/* .register_err_msg.fail { */
+.register_err_msg.fail,
 .login_err_msg.fail {
   display: block;
   color: red;
