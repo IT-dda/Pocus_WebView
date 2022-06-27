@@ -98,6 +98,7 @@
               tabindex="0"
             >
               <div class="d-flex flex-column align-items-center">
+                <!-- TODO: user table 구조 변경 후 form에 들어가는 값 변경 -->
                 <form class="personal_form">
                   <div class="mb-3">
                     <label for="usernameInput" class="form-label">
@@ -107,13 +108,19 @@
                       type="text"
                       class="form-control"
                       id="usernameInput"
+                      value="<%= userData.id %>"
                     />
                   </div>
                   <div class="mb-3">
                     <label for="emailInput" class="form-label">
                       Email address
                     </label>
-                    <input type="email" class="form-control" id="emailInput" />
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="emailInput"
+                      value="<%= userData.user_id %>"
+                    />
                   </div>
                   <div class="mb-3">
                     <label for="passwordInput" class="form-label"
@@ -123,6 +130,7 @@
                       type="password"
                       class="form-control"
                       id="passwordInput"
+                      value="<%= userData.password %>"
                     />
                   </div>
                   <div class="text-center">

@@ -1,6 +1,7 @@
 // 'use strict';
-
+// import { User } from '../models/User';
 const db = require('../config/database');
+const User = require('../models/User');
 
 const output = {
   home: (req, res) => {
@@ -109,10 +110,30 @@ const output = {
   },
   mypage: (req, res) => {
     console.log('GET /mypage is running...');
-    res.render('pages/mypage', {
-      isLogined: req.session.isLogined,
-      username: req.session.loginData,
-    });
+
+    let userData;
+
+    db.query(
+      'select * from user where id=?',
+      req.session.loginData,
+      (err, row) => {
+        if (err) console.error('something went wrong..');
+
+        if (row.length > 0) {
+          console.log('load user info');
+          userData = new User(row[0].user_id, row[0].id, row[0].password);
+        } else {
+          console.log('cant load user info from db. you might be logged out.');
+          res.redirect('/login');
+        }
+
+        res.render('pages/mypage', {
+          isLogined: req.session.isLogined,
+          username: req.session.loginData,
+          userData: userData,
+        });
+      }
+    );
   },
   init: (req, res) => {
     console.log('GET /init is running...');
