@@ -122,18 +122,16 @@ const output = {
         if (row.length > 0) {
           console.log('load user info');
           userData = new User(row[0].user_id, row[0].id, row[0].password);
-          // req.flash('userData', userData);
-
-          // TODO: username을 id말고 닉네임 출력하는 걸로 변경
-          res.render('pages/mypage', {
-            isLogined: req.session.isLogined,
-            username: req.session.loginData,
-            userData: userData,
-          });
         } else {
           console.log('cant load user info from db. you might be logged out.');
           res.redirect('/login');
         }
+
+        res.render('pages/mypage', {
+          isLogined: req.session.isLogined,
+          username: req.session.loginData,
+          userData: userData,
+        });
       }
     );
   },
