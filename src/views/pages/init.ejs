@@ -41,7 +41,11 @@
         <section class="col-8 d-flex">
           <article class="col-6 upper_box">
             <p class="text-center incomplete">Incomplete...</p>
-            <div class="w-100 h-75 text-center"></div>
+            <div class="w-100 h-75 text-center">
+              <!-- Webcam Test -->
+              <video id="video" autoplay=""></video>
+              <canvas id="canvas"></canvas>
+            </div>
           </article>
           <article class="col-6 lower_box">
             <p class="text-center complete">Complete!</p>
@@ -56,5 +60,7 @@
         </a>
       </div>
     </main>
+
+    <script src="/js/webcam.js"></script>
   </body>
 </html>
