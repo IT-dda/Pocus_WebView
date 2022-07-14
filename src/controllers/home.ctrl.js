@@ -11,10 +11,16 @@ const output = {
   },
   login: (req, res) => {
     console.log('GET /login is running...');
-    res.render('pages/login', {
-      isLogined: req.session.isLogined,
-      loginResult: req.flash('loginResult'),
-    });
+
+    if (req.session.isLogined) {
+      console.log('You are already logged in. You cannot access to this page.');
+      res.redirect('/');
+    } else {
+      res.render('pages/login', {
+        isLogined: req.session.isLogined,
+        loginResult: req.flash('loginResult'),
+      });
+    }
   },
   login_post: (req, res) => {
     console.log('POST /login is running...');
@@ -73,10 +79,16 @@ const output = {
   },
   register: (req, res) => {
     console.log('GET /register is running...');
-    res.render('pages/register', {
-      isLogined: req.session.isLogined,
-      registerResult: req.flash('registerResult'),
-    });
+
+    if (req.session.isLogined) {
+      console.log('You are already logged in. You cannot access to this page.');
+      res.redirect('/');
+    } else {
+      res.render('pages/register', {
+        isLogined: req.session.isLogined,
+        registerResult: req.flash('registerResult'),
+      });
+    }
   },
   register_post: (req, res) => {
     console.log('POST /register is running...');
@@ -109,22 +121,40 @@ const output = {
   },
   mypage: (req, res) => {
     console.log('GET /mypage is running...');
-    res.render('pages/mypage', {
-      isLogined: req.session.isLogined,
-      username: req.session.loginData,
-    });
+
+    if (req.session.isLogined) {
+      res.render('pages/mypage', {
+        isLogined: req.session.isLogined,
+        username: req.session.loginData,
+      });
+    } else {
+      console.log('You are not logged in. You cannot access to this page.');
+      res.redirect('/');
+    }
   },
   init: (req, res) => {
     console.log('GET /init is running...');
-    res.render('pages/init', {
-      isLogined: req.session.isLogined,
-    });
+
+    if (req.session.isLogined) {
+      res.render('pages/init', {
+        isLogined: req.session.isLogined,
+      });
+    } else {
+      console.log('You are not logged in. You cannot access to this page.');
+      res.redirect('/');
+    }
   },
   pocus: (req, res) => {
     console.log('GET /pocus is running...');
-    res.render('pages/pocus', {
-      isLogined: req.session.isLogined,
-    });
+
+    if (req.session.isLogined) {
+      res.render('pages/pocus', {
+        isLogined: req.session.isLogined,
+      });
+    } else {
+      console.log('You are not logged in. You cannot access to this page.');
+      res.redirect('/');
+    }
   },
 };
 
