@@ -81,3 +81,7 @@
   background: #eee;
   transform: translate(-50%, -50%);
 }
+
+#canvas {
+  display: none;
+}
