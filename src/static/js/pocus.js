@@ -4,7 +4,7 @@ const NOTI_TITLE = '🔔 스트레칭 알림';
 const NOTI_ICON = '/image/exercising.png';
 const NOTI_MSG =
   '올바른 자세를 유지하고 계신가요? 스트레칭 할 시간입니다. 자리에서 일어나주세요!';
-const NOTI_TIME = notiTime * 1000; // sec test
+const NOTI_TIME = notiTime * 1000; // sec (test)
 // const NOTI_TIME = notiTime * 1000 * 60; // min
 
 const powerOffAlert = () => {
@@ -57,5 +57,6 @@ window.onload = () => {
 };
 $btn_power_off.addEventListener('click', () => powerOffAlert());
 
-// TODO: notification form validation
 // TODO: add audio with notification
+// TODO: set default 10 mins
+// TODO: notification form validation
