@@ -8,6 +8,7 @@ const NOTI_MSG =
 const STRETCHING_LINK = 'https://youtu.be/fFIL0rlRH78';
 const NOTI_TIME = notiTime ? notiTime * 1000 : DEFAULT_TIME * 1000; // sec (test)
 // const NOTI_TIME = notiTime ? notiTime * 1000 * 60 : DEFAULT_TIME * 1000 * 60; // min
+const BEEP_SOUND = '/sound/beepSound.mp3';
 
 const powerOffAlert = () => {
   Swal.fire({
@@ -30,7 +31,7 @@ const powerOffAlert = () => {
 };
 
 const calculate = () => {
-  setTimeout(function () {
+  setInterval(function () {
     notify();
   }, NOTI_TIME);
 };
@@ -40,6 +41,8 @@ const notify = () => {
     alert('notification is disabled');
   }
 
+  const audio = new Audio(BEEP_SOUND);
+  audio.play();
   let notification = new Notification(NOTI_TITLE, {
     icon: NOTI_ICON,
     body: NOTI_MSG,
@@ -57,5 +60,3 @@ window.onload = () => {
   calculate();
 };
 $btn_power_off.addEventListener('click', () => powerOffAlert());
-
-// TODO: add audio with notification
