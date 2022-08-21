@@ -1,6 +1,7 @@
 // 'use strict';
 
 const db = require('../config/database');
+let NOTI_TIME;
 
 const output = {
   home: (req, res) => {
@@ -120,10 +121,18 @@ const output = {
       isLogined: req.session.isLogined,
     });
   },
+  init_post: (req, res) => {
+    console.log('POST /init is running...');
+    const { min } = req.body;
+    NOTI_TIME = min;
+
+    res.redirect('/pocus');
+  },
   pocus: (req, res) => {
     console.log('GET /pocus is running...');
     res.render('pages/pocus', {
       isLogined: req.session.isLogined,
+      notiTime: NOTI_TIME,
     });
   },
 };
