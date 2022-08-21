@@ -7,58 +7,63 @@
   </head>
   <body class="d-flex align-items-center bg_darkblack color_white init_page">
     <main class="container">
-      <div class="text-center init_tit">
-        <span class="btn_gotoback"><i class="fa-solid fa-arrow-left"></i></span>
-        <h1>Hello 🙌🏻 <br />Start to register your posture!</h1>
-        <p>
-          Please maintain
-          <span class="fw-bold color_blue">the correct posture</span> until the
-          posture registration is completed! 😎
-        </p>
-      </div>
+      <form action="/init" method="POST">
+        <div class="text-center init_tit">
+          <span class="btn_gotoback"
+            ><i class="fa-solid fa-arrow-left"></i
+          ></span>
+          <h1>Hello 🙌🏻 <br />Start to register your posture!</h1>
+          <p>
+            Please maintain
+            <span class="fw-bold color_blue">the correct posture</span> until
+            the posture registration is completed! 😎
+          </p>
+        </div>
 
-      <div class="row init_body">
-        <section class="col-4">
-          <article
-            class="h-100 d-flex flex-column justify-content-between example_box"
-          >
-            <p class="text-center">Example of a correct posture</p>
-            <img src="/image/posture.jpeg" alt="" />
-            <div class="timer_box">
-              <p>Please set the notification alarm for stretching!</p>
-              <div class="text-center">
-                <label for="period_time">⏰ every</label>
-                <input
-                  id="period_time"
-                  type="number"
-                  placeholder="20 minutes"
-                  min="1"
-                />
+        <div class="row init_body">
+          <section class="col-4">
+            <article
+              class="h-100 d-flex flex-column justify-content-between example_box"
+            >
+              <p class="text-center">Example of a correct posture</p>
+              <img src="/image/posture.jpeg" alt="" />
+              <div class="timer_box">
+                <p>Please set the notification alarm for stretching!</p>
+                <div class="text-center">
+                  <label for="period_time">⏰ every</label>
+                  <input
+                    id="period_time"
+                    type="number"
+                    placeholder="20 minutes"
+                    min="1"
+                    name="min"
+                  />
+                </div>
               </div>
-            </div>
-          </article>
-        </section>
-        <section class="col-8 d-flex">
-          <!-- <article class="col-6 upper_box">
+            </article>
+          </section>
+          <section class="col-8 d-flex">
+            <!-- <article class="col-6 upper_box">
             <p class="text-center incomplete">Incomplete...</p>
             <div class="w-100 h-75 text-center">
               <video autoplay="true" id="videoElement"></video>
             </div>
           </article> -->
-          <article class="col-12 lower_box">
-            <div class="w-100 h-100 text-center">
-              <p class="text-center complete">Complete!</p>
-              <div>하체 초기 등록 부분</div>
-            </div>
-          </article>
-        </section>
-      </div>
+            <article class="col-12 lower_box">
+              <div class="w-100 h-100 text-center">
+                <p class="text-center complete">Complete!</p>
+                <div>하체 초기 등록 부분</div>
+              </div>
+            </article>
+          </section>
+        </div>
 
-      <div class="text-center">
-        <a href="/pocus">
+        <div class="text-center">
+          <!-- <a href="/pocus"> -->
           <button class="btn btn-lg btn-primary">START Pocus</button>
-        </a>
-      </div>
+          <!-- </a> -->
+        </div>
+      </form>
     </main>
   </body>
 </html>

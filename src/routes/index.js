@@ -15,5 +15,6 @@ router.get('/pocus', ctrl.output.pocus);
 
 router.post('/register', ctrl.output.register_post);
 router.post('/login', ctrl.output.login_post);
+router.post('/init', ctrl.output.init_post);
 
 module.exports = router;
