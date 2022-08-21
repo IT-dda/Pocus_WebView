@@ -125,7 +125,6 @@ const output = {
     console.log('POST /init is running...');
     const { min } = req.body;
     NOTI_TIME = min;
-    console.log('NOTI_TIME: ', NOTI_TIME);
 
     res.redirect('/pocus');
   },
