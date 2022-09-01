@@ -13,6 +13,8 @@ const FileStore = require('session-file-store')(session);
 const cors = require('cors');
 const flash = require('connect-flash');
 const app = express();
+// serialport
+const { SerialPort } = require('serialport');
 
 // 라우팅
 const home = require('./src/routes');
