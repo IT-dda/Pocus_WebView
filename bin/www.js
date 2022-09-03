@@ -8,6 +8,10 @@ const HTTPServer = app.listen(PORT, () => {
   console.log(`Connection to http://localhost:${PORT}`);
 });
 
+const webSocket = require('../src/config/ss');
+webSocket(HTTPServer);
+
+/*
 // WS
 const wsModule = require('ws');
 const webSocketServer = new wsModule.Server({
@@ -38,3 +42,5 @@ webSocketServer.on('connection', (ws, request) => {
     console.log(`클라이언트 웹소켓 연결 종료`);
   });
 });
+
+*/

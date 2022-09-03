@@ -1,7 +1,7 @@
 // 'use strict';
 
 const db = require('../config/database');
-const portName = require('../config/ss');
+//const portName = require('../config/ss');
 
 let NOTI_TIME;
 
