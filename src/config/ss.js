@@ -1,4 +1,5 @@
 const { SerialPort } = require('serialport');
+const { ReadlineParser } = require('@serialport/parser-readline')
 
 const portName = new SerialPort({
   path: 'COM3',
@@ -14,6 +15,7 @@ portName.on('open', function () {
   //   console.log(data.toString('utf-8'));
   // });
 });
+const parser = portName.pipe(new ReadlineParser({ delimiter: '\n' }))
 
 //module.exports = portName;
 
@@ -33,7 +35,7 @@ module.exports = (server) => {
       ws.send(`클라이언트 접속을 환영합니다 from 서버`); // 데이터 전송
     }
 
-    portName.on('data', function (data) {
+    parser.on('data', function (data) {
       ws.send(data.toString('utf-8'));
       console.log(data.toString('utf-8'));
     });
