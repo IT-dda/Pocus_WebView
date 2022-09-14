@@ -11,13 +11,9 @@ const portName = new SerialPort({
 
 portName.on('open', function () {
   console.log('open serial communication');
-  // portName.on('data', function (data) {
-  //   console.log(data.toString('utf-8'));
-  // });
 });
 const parser = portName.pipe(new ReadlineParser({ delimiter: '\r\n' }))
 
-//module.exports = portName;
 
 // WS
 const wsModule = require('ws');
@@ -33,20 +29,13 @@ module.exports = (server) => {
     if (ws.readyState === ws.OPEN) {
       // 연결 여부 체크
       ws.send(`클라이언트 접속을 환영합니다 from 서버`); // 데이터 전송
+    
     }
 
     parser.on('data', function (data) {
       ws.send(data.toString('utf-8'));
       console.log(data.toString('utf-8'));
     });
-
-    // portName.on('open', function () {
-    //   console.log('open serial communication');
-    //   portName.on('data', function (data) {
-    //     ws.send(data.toString('utf-8'));
-    //     console.log(data.toString('utf-8'));
-    //   });
-    // });
 
     // 3) 클라이언트로부터 메시지 수신 이벤트 처리
     ws.on('message', (msg) => {
