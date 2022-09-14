@@ -15,7 +15,7 @@ portName.on('open', function () {
   //   console.log(data.toString('utf-8'));
   // });
 });
-const parser = portName.pipe(new ReadlineParser({ delimiter: '\n' }))
+const parser = portName.pipe(new ReadlineParser({ delimiter: '\r\n' }))
 
 //module.exports = portName;
 
