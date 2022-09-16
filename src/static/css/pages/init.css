@@ -67,54 +67,57 @@
   margin-bottom: calc(var(--base-space) * 2);
 }
 
-.init_page .lower_box .sensor_box{
+.init_page .lower_box .sensor_box {
   margin-top: calc(var(--base-space) * 6);
-  position:relative;
-  padding: calc(var(--base-space) * 3) calc(var(--base-space) * 4);
+  position: relative;
+  /* padding: calc(var(--base-space) * 3) calc(var(--base-space) * 4); */
   border-radius: 5px;
-  background: var(--color-white);
+  background-color: var(--color-white);
+  background-image: url("../../image/armchair.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   color: var(--color-darkblack);
   font-size: 1.2rem;
   word-break: break-all;
 }
 
-.init_page .lower_box .sensor_box .sensor_1{
+.init_page .sensors {
+  position: relative;
+  width: 50%;
+  height: fit-content;
+  margin: auto;
+  aspect-ratio: 1 / 1;
+}
+
+.init_page .lower_box .sensor_box .sensor {
   position: absolute;
-  top: 20%;
-  left:35%;
-  width : 100px;
-  height : 100px;
+  width : 48%;
+  height : 48%;
   border-radius: 50%;
 }
 
-.init_page .lower_box .sensor_box .sensor_2{
-  position: absolute;
-  top: 45%;
-  left:35%;
-  width : 100px;
-  height : 100px;
-  border-radius: 50%;
+.init_page .lower_box .sensor_box .sensor_1 {
+  top: 0;
+  left: 0;
 }
 
-.init_page .lower_box .sensor_box .sensor_3{
-  position: absolute;
-  top: 20%;
-  left:53%;
-  width : 100px;
-  height : 100px;
-  border-radius: 50%;
+.init_page .lower_box .sensor_box .sensor_2 {
+  top: 52%;
+  left: 0;
 }
 
-.init_page .lower_box .sensor_box .sensor_4{
-  position: absolute;
-  top: 45%;
-  left:53%;
-  width : 100px;
-  height : 100px;
-  border-radius: 50%;
+.init_page .lower_box .sensor_box .sensor_3 {
+  top: 0;
+  left: 52%;
 }
 
-.init_page .lower_box .sensor_box img{
+.init_page .lower_box .sensor_box .sensor_4 {
+  top: 52%;
+  left: 52%;
+}
+
+.init_page .lower_box .sensor_box img {
   width: 400px;
   height: 400px;
 }
@@ -132,4 +135,16 @@
   left: 50%;
   /* background: #eee; */
   transform: translate(-50%, -50%);
+}
+
+@media screen and (min-width: 992px) {
+  .init_page .sensors {
+    width: 40%;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .init_page .sensors {
+    width: 38%;
+  }
 }

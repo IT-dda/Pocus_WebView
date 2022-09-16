@@ -7,7 +7,7 @@
     <script defer src="/js/webcam.js"></script>
     <script defer src="/js/sensor.js"></script>
   </head>
-  <body class="d-flex align-items-center body_pocus bg_darkblack color_white">
+  <body class="d-flex align-items-center body_pocus bg_darkblack color_white pocus_page">
     <input type="hidden" name="notiTime" value="<%= notiTime %>" />
     <main class="container">
       <h1 class="text-center">POCUS VIDEO 📹</h1>
@@ -21,15 +21,13 @@
         </article>
         <article class="h-100 col-6 d-flex flex-column lower_box">
           <p class="text-center">Lower body</p>
-          <div class="sensor_box">
-            <img src="/image/armchair.png" alt="" />
-            <div class="sensor_1"></div>
-            <div class="sensor_2"></div>
-            <div class="sensor_3"></div>
-            <div class="sensor_4"></div>
-          </div>
-          <div class="flex-grow-1">
-            
+          <div class="flex-grow-1 sensor_box">
+            <div class="sensors">
+                <div class="sensor sensor_1"></div>
+                <div class="sensor sensor_2"></div>
+                <div class="sensor sensor_3"></div>
+                <div class="sensor sensor_4"></div>
+              </div>
           </div>
         </article>
       </section>
