@@ -37,9 +37,14 @@ const calculate = () => {
 };
 
 const notify = () => {
-  if (Notification.permission !== 'granted') {
-    alert('notification is disabled');
-  }
+  // if (Notification.permission !== 'granted') {
+  //   Swal.fire({
+  //     icon: 'info',
+  //     title: 'Notification is disabled?',
+  //     showConfirmButton: false,
+  //     timer: 1500,
+  //   });
+  // }
 
   const audio = new Audio(BEEP_SOUND);
   audio.play();
