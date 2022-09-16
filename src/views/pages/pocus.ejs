@@ -15,7 +15,22 @@
         <article class="col-6 d-flex flex-column upper_box">
           <p class="text-center">Upper body</p>
           <div class="flex-grow-1">
-            <video autoplay="true" id="videoElement"></video>
+            <div class="contentarea">
+              <div class="camera">
+                <video id="video">Video stream not available.</video>
+                <!-- <button id="startbutton">Take photo</button> -->
+              </div>
+              <canvas id="canvas"> </canvas>
+              <div class="d-none output">
+                <!-- <div class="output"> -->
+                <img
+                  id="photo"
+                  alt="The screen capture will appear in this box."
+                />
+              </div>
+            </div>
+
+            <!-- <video autoplay="true" id="videoElement"></video> -->
           </div>
         </article>
         <article class="h-100 col-6 d-flex flex-column lower_box">
