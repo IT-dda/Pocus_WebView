@@ -1,9 +1,28 @@
 // 'use strict';
 
 const db = require('../config/database');
+var request = require('request');
 let NOTI_TIME;
 
 const output = {
+  test2: (req, res) => {
+    console.log('node 2 flask test2');
+
+    var geturl = 'http://127.0.0.1:5000/test/image';
+    // var result;
+    request.get(
+      {
+        url: geturl,
+      },
+      function (error, response, body) {
+        console.log('line 17) ', JSON.parse(body));
+        res.send(JSON.parse(body));
+        // result = JSON.parse(body);
+      }
+    );
+    // res.send('connection');
+    // res.send(result);
+  },
   home: (req, res) => {
     console.log('GET / is running...');
     res.render('pages/index', {

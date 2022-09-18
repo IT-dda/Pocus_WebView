@@ -12,6 +12,7 @@ router.get('/register', ctrl.output.register);
 router.get('/mypage', ctrl.output.mypage);
 router.get('/init', ctrl.output.init);
 router.get('/pocus', ctrl.output.pocus);
+router.get('/test2', ctrl.output.test2);
 
 router.post('/register', ctrl.output.register_post);
 router.post('/login', ctrl.output.login_post);
