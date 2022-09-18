@@ -4,6 +4,9 @@ const db = require('../config/database');
 let NOTI_TIME;
 
 const output = {
+  test: (req, res) => {
+    res.render('pages/test');
+  },
   home: (req, res) => {
     console.log('GET / is running...');
     res.render('pages/index', {
