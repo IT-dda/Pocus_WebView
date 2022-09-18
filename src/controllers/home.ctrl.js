@@ -5,6 +5,9 @@ var request = require('request');
 let NOTI_TIME;
 
 const output = {
+  test1: (req, res) => {
+    res.render('pages/webcamTest');
+  },
   test2: (req, res) => {
     console.log('node 2 flask test2');
 
@@ -18,6 +21,9 @@ const output = {
         res.send(JSON.parse(body));
       }
     );
+  },
+  imgData: (req, res) => {
+    res.send('성공!!');
   },
   home: (req, res) => {
     console.log('GET / is running...');
