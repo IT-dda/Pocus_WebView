@@ -35,9 +35,22 @@ module.exports = (server) => {
     parser.on('data', function (data) {
       //
       ws.send(data.toString('utf-8'));
-      axios.get('http://localhost:5000/lower/predict').then((result) => {
-        console.log(result.data);
-      });
+      // axios.get('http://localhost:5000/lower/predict').then((result) => {
+      //   console.log(result.data);
+      // });
+
+      const val = data.toString('utf-8');
+
+      axios
+        .post('http://localhost:5000/lower/predict', {
+          values: data.toString('utf-8'),
+        })
+        .then((result) => {
+          console.log(result.data['prediction'], result.data['params']);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
       //console.log(data.toString('utf-8'));
     });
 
