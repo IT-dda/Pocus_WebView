@@ -3,15 +3,17 @@ let sensor_1 = document.querySelector('.sensor_1');
 let sensor_2 = document.querySelector('.sensor_2');
 let sensor_3 = document.querySelector('.sensor_3');
 let sensor_4 = document.querySelector('.sensor_4');
+let page = document.querySelector('h1');
 
 // 1. 웹소켓 클라이언트 객체 생성
 const webSocket = new WebSocket('ws://localhost:8000');
 
 // 알림
 const SS_NOTI_TITLE = '🔔 하체 알림';
-const SS_NOTI_ICON = '/image/exercising.png';
+const SS_NOTI_ICON = '/image/exercising.png'; // 니중에 꼭 바꾸기
 const SS_BEEP_SOUND = '/sound/beepSound.mp3';
-const SS_NOTI_MSG = '잘못된 하체 자세';
+// const SS_NOTI_MSG = '잘못된 하체 자세';
+let flag = false;
 
 // 2. 웹소켓 이벤트 처리
 // 2-1) 연결 이벤트 처리
@@ -26,9 +28,32 @@ webSocket.onmessage = function (event) {
       sensor_value(chars[i], i);
     }
   } else {
+    if (page.innerHTML !== 'POCUS VIDEO 📹') {
+      return;
+    }
+
     console.log('pre ' + event.data);
     if (event.data !== 'correct') {
-      sensor_notify();
+      if (flag) {
+        let pose = '잘못된 하체 자세';
+        switch (event.data) {
+          case 'left':
+            pose = '왼쪽 다리 꼰 자세';
+            break;
+          case 'right':
+            pose = '오른쪽 다리 꼰 자세';
+            break;
+          case 'twist':
+            pose = '양반 다리 자세';
+            break;
+        }
+        sensor_notify(pose);
+        flag = false;
+      } else {
+        flag = true;
+      }
+    } else {
+      flag = false;
     }
   }
 
@@ -74,11 +99,11 @@ function sensor_value(value, index) {
   }
 }
 
-function sensor_notify() {
+function sensor_notify(ss_notification) {
   const audio = new Audio(SS_BEEP_SOUND);
   audio.play();
   let notification = new Notification(SS_NOTI_TITLE, {
     icon: SS_NOTI_ICON,
-    body: SS_NOTI_MSG,
+    body: ss_notification,
   });
 }
