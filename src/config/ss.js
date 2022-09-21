@@ -46,6 +46,8 @@ module.exports = (server) => {
           values: data.toString('utf-8'),
         })
         .then((result) => {
+          //
+          ws.send(result.data['prediction']);
           console.log(result.data['prediction'], result.data['params']);
         })
         .catch((error) => {

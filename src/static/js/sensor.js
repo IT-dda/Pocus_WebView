@@ -7,6 +7,12 @@ let sensor_4 = document.querySelector('.sensor_4');
 // 1. 웹소켓 클라이언트 객체 생성
 const webSocket = new WebSocket('ws://localhost:8000');
 
+// 알림
+const SS_NOTI_TITLE = '🔔 하체 알림';
+const SS_NOTI_ICON = '/image/exercising.png';
+const SS_BEEP_SOUND = '/sound/beepSound.mp3';
+const SS_NOTI_MSG = '잘못된 하체 자세';
+
 // 2. 웹소켓 이벤트 처리
 // 2-1) 연결 이벤트 처리
 webSocket.onopen = () => {
@@ -14,10 +20,18 @@ webSocket.onopen = () => {
 };
 // 2-2) 메세지 수신 이벤트 처리
 webSocket.onmessage = function (event) {
-  const chars = event.data.split(',');
-  for (let i=0; i<4; i++){
-    sensor_value(chars[i], i);
+  if (event.data.includes(',')) {
+    const chars = event.data.split(',');
+    for (let i = 0; i < 4; i++) {
+      sensor_value(chars[i], i);
+    }
+  } else {
+    console.log('pre ' + event.data);
+    if (event.data !== 'correct') {
+      sensor_notify();
+    }
   }
+
   console.log(`서버 웹소켓에게 받은 데이터: ${event.data}`);
 };
 // 2-3) 연결 종료 이벤트 처리
@@ -29,39 +43,20 @@ webSocket.onerror = function (event) {
   console.log(event);
 };
 
-function sensor_value(value, index){
+function sensor_value(value, index) {
   var color;
-  // switch(value){
-  //   case 0:
-  //     color = '#3e75ff';
-  //     console.log('1-0');
-  //     break;
-  //   case 256 <= value && value < 512:
-  //     color = '#009e63';
-  //     console.log('1-1');
-  //     break;
-  //   case 512 <= value && value < 768:
-  //     color = '#ffc65c';
-  //     break;
-  //   case 768 <= value && value < 1024:
-  //     color = '#f22851';
-  //     break;
-  //   default:
-  //     console.log("value:"+value);
-  // }
 
-  if(value >= 0 && value < 256){
+  if (value >= 0 && value < 256) {
     color = '#3e75ff';
-  }else if(value < 512){
+  } else if (value < 512) {
     color = '#009e63';
-  }else if(value <768){
+  } else if (value < 768) {
     color = '#ffc65c';
-  }else if(value < 1024){
+  } else if (value < 1024) {
     color = '#f22851';
-
   }
 
-  switch(index){
+  switch (index) {
     case 0:
       sensor_1.style.backgroundColor = color;
       break;
@@ -75,6 +70,15 @@ function sensor_value(value, index){
       sensor_4.style.backgroundColor = color;
       break;
     default:
-      console.log("switch2");
+      console.log('switch2');
   }
+}
+
+function sensor_notify() {
+  const audio = new Audio(SS_BEEP_SOUND);
+  audio.play();
+  let notification = new Notification(SS_NOTI_TITLE, {
+    icon: SS_NOTI_ICON,
+    body: SS_NOTI_MSG,
+  });
 }
