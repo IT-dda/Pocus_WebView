@@ -1,5 +1,7 @@
 const { SerialPort } = require('serialport');
-const { ReadlineParser } = require('@serialport/parser-readline')
+const { ReadlineParser } = require('@serialport/parser-readline');
+//import { axios } from 'axios';
+const axios = require('axios');
 
 const portName = new SerialPort({
   path: 'COM3',
@@ -12,8 +14,7 @@ const portName = new SerialPort({
 portName.on('open', function () {
   console.log('open serial communication');
 });
-const parser = portName.pipe(new ReadlineParser({ delimiter: '\r\n' }))
-
+const parser = portName.pipe(new ReadlineParser({ delimiter: '\r\n' }));
 
 // WS
 const wsModule = require('ws');
@@ -29,12 +30,15 @@ module.exports = (server) => {
     if (ws.readyState === ws.OPEN) {
       // 연결 여부 체크
       ws.send(`클라이언트 접속을 환영합니다 from 서버`); // 데이터 전송
-    
     }
 
     parser.on('data', function (data) {
+      //
       ws.send(data.toString('utf-8'));
-      console.log(data.toString('utf-8'));
+      axios.get('http://localhost:5000/lower/predict').then((result) => {
+        console.log(result.data);
+      });
+      //console.log(data.toString('utf-8'));
     });
 
     // 3) 클라이언트로부터 메시지 수신 이벤트 처리
