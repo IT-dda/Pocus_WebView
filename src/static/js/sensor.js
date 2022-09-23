@@ -21,11 +21,24 @@ webSocket.onopen = () => {
   console.log('웹소켓서버와 연결 성공');
 };
 // 2-2) 메세지 수신 이벤트 처리
+const NOTIS = [
+  '굿굿~',
+  '왼쪽 다리 꼰 자세',
+  '오른쪽 다리 꼰 자세',
+  '양반 다리 자세',
+  '잘못된 자세',
+];
 webSocket.onmessage = function (event) {
   if (event.data.includes(',')) {
     const chars = event.data.split(',');
     for (let i = 0; i < 4; i++) {
       sensor_value(chars[i], i);
+    }
+    if (page.innerHTML !== 'POCUS VIDEO 📹') {
+      if (event.data !== '0,0,0,0') {
+        const btn = document.querySelector('.btn');
+        btn.disabled = false;
+      }
     }
   } else {
     if (page.innerHTML !== 'POCUS VIDEO 📹') {
@@ -33,20 +46,9 @@ webSocket.onmessage = function (event) {
     }
 
     console.log('pre ' + event.data);
-    if (event.data !== 'correct') {
+    if (event.data !== 0) {
       if (flag) {
-        let pose = '잘못된 하체 자세';
-        switch (event.data) {
-          case 'left':
-            pose = '왼쪽 다리 꼰 자세';
-            break;
-          case 'right':
-            pose = '오른쪽 다리 꼰 자세';
-            break;
-          case 'twist':
-            pose = '양반 다리 자세';
-            break;
-        }
+        let pose = NOTIS[event.data];
         sensor_notify(pose);
         flag = false;
       } else {

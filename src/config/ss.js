@@ -41,18 +41,20 @@ module.exports = (server) => {
 
       const val = data.toString('utf-8');
 
-      axios
-        .post('http://localhost:5000/lower/predict', {
-          values: data.toString('utf-8'),
-        })
-        .then((result) => {
-          //
-          ws.send(result.data['prediction']);
-          console.log(result.data['prediction'], result.data['params']);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      if (val !== '0,0,0,0') {
+        axios
+          .post('http://localhost:5000/lower/predict', {
+            values: data.toString('utf-8'),
+          })
+          .then((result) => {
+            //
+            ws.send(result.data['prediction']);
+            console.log(result.data['prediction'], result.data['params']);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
       //console.log(data.toString('utf-8'));
     });
 
