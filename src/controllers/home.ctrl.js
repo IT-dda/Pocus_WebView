@@ -2,6 +2,7 @@
 
 const db = require('../config/database');
 var request = require('request');
+const axios = require('axios');
 let NOTI_TIME;
 
 const output = {
@@ -21,6 +22,28 @@ const output = {
         res.send(JSON.parse(body));
       }
     );
+  },
+  test3: (req, res) => {
+    console.log(req.query.imgData);
+  },
+  test4: (req, res) => {
+    // console.log(req.body.imgData);
+    let imgData = req.body.imgData;
+    // axios.get('http://127.0.0.1:5000/conn/image').then((result) => {
+    //   console.log(result.data);
+    // });
+
+    axios
+      .post('http://127.0.0.1:5000/conn/image', {
+        values: imgData,
+      })
+      .then((result) => {
+        // console.log(result.data['prediction'], result.data['params']);
+        console.log(result.data['message']);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
   imgData: (req, res) => {
     res.send('성공!!');

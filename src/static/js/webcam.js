@@ -30,6 +30,8 @@
   let canvas = null;
   let photo = null;
   // let startbutton = null;
+  let imgDataInput = null;
+  let imgDataForm = null;
 
   function showViewLiveResultButton() {
     if (window.self !== window.top) {
@@ -126,6 +128,8 @@
 
   function takepicture() {
     const context = canvas.getContext('2d');
+    imgDataInput = document.querySelector('#imgData');
+    imgDataForm = document.querySelector('#imgDataForm');
     if (width && height) {
       canvas.width = width;
       canvas.height = height;
@@ -133,6 +137,12 @@
 
       const data = canvas.toDataURL('image/png');
       photo.setAttribute('src', data);
+      imgDataInput.setAttribute('value', data);
+      // console.log(imgDataInput.value);
+      // imgDataForm.addEventListener('submit', function () {
+      //   console.log('imgDataForm 전송 완료?!');
+      // });
+      document.imgDataForm.submit();
     } else {
       clearphoto();
     }
