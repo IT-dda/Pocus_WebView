@@ -34,7 +34,7 @@ const output = {
     // });
 
     axios
-      .post('http://127.0.0.1:5000/conn/image', {
+      .post('http://127.0.0.1:5000/upper/predict', {
         values: imgData,
       })
       .then((result) => {
