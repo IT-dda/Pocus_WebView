@@ -46,7 +46,8 @@ webSocket.onmessage = function (event) {
     }
 
     console.log('pre ' + event.data);
-    if (event.data !== 0) {
+    // console.log(typeof event.data); // string
+    if (event.data != 0) {
       if (flag) {
         let pose = NOTIS[event.data];
         sensor_notify(pose);
