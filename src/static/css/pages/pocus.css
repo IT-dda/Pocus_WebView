@@ -87,3 +87,8 @@
   /* width: 760px; */
   width: 100%;
 }
+
+/* 상체 포즈 예측 저장 div */
+.hidden {
+  visibility: hidden;
+}

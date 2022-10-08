@@ -100,7 +100,7 @@
     // );
     setInterval(function () {
       takepicture();
-    }, 1000);
+    }, 3000);
 
     clearphoto();
   }
@@ -117,7 +117,7 @@
     photo.setAttribute('src', data);
 
     // [seoyeon]
-    console.log(data);
+    // console.log(data);1
   }
 
   // Capture a photo by fetching the current contents of the video

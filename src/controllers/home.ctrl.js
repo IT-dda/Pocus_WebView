@@ -4,6 +4,7 @@ const db = require('../config/database');
 var request = require('request');
 const axios = require('axios');
 let NOTI_TIME;
+let isCorrect;
 
 const output = {
   test1: (req, res) => {
@@ -26,20 +27,24 @@ const output = {
   test3: (req, res) => {
     console.log(req.query.imgData);
   },
-  test4: (req, res) => {
+  test4: async (req, res) => {
     // console.log(req.body.imgData);
     let imgData = req.body.imgData;
     // axios.get('http://127.0.0.1:5000/conn/image').then((result) => {
     //   console.log(result.data);
     // });
-
-    axios
+    await axios
       .post('http://127.0.0.1:5000/upper/predict', {
         values: imgData,
       })
       .then((result) => {
-        // console.log(result.data['prediction'], result.data['params']);
         console.log(result.data['message']);
+        if (result.data['message'] > 0) {
+          res.render('pages/pocus', {
+            isCorrect: result.data['message'],
+            notiTime: NOTI_TIME,
+          });
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -177,6 +182,7 @@ const output = {
     res.render('pages/pocus', {
       isLogined: req.session.isLogined,
       notiTime: NOTI_TIME,
+      isCorrect: isCorrect,
     });
   },
 };
