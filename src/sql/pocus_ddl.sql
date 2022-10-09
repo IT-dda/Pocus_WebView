@@ -1,5 +1,4 @@
 /* CREATE TABLE */
-# 사용자
 DROP table if exists User;
 CREATE table User (
     user_id int not null auto_increment,
@@ -14,7 +13,6 @@ CREATE table User (
     primary key (user_id)
 );
 
-# 자세 알림 로그
 DROP table if exists Log;
 CREATE table Log (
     log_id int not null auto_increment,
@@ -27,7 +25,6 @@ CREATE table Log (
     primary key (log_id)
 );
 
-# 하체 데이터
 DROP table if exists SS;
 CREATE table SS (
     log_id int not null,
