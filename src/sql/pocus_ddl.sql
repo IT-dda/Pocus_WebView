@@ -7,9 +7,9 @@ CREATE table User (
     password varchar(20) not null,
 --     nickname varchar(20) not null default 'user',
 --     birthday date not null,
---     gender int(1) not null check (gender IN (0, 1)),
---     height int(3) not null,
---     weight int(3) not null,
+--     gender tinyint not null check (gender IN (0, 1)),
+--     height tinyint not null,
+--     weight tinyint not null,
 
     primary key (user_id)
 );
@@ -21,7 +21,7 @@ CREATE table Log (
     user_id int not null,
     date datetime default current_timestamp,
 	warning varchar(100), -- 한글 50자까지 입력 가능
-    isUpper int(1) not null check (isUpper IN (0, 1)),
+    isUpper tinyint not null check (isUpper IN (0, 1)),
 
     foreign key (user_id) references user(user_id) on delete cascade,
     primary key (log_id)
@@ -30,29 +30,12 @@ CREATE table Log (
 # 하체 데이터
 DROP table if exists SS;
 CREATE table SS (
-    ss_id int not null auto_increment,
-    user_id int not null,
-    date datetime default current_timestamp,
+    log_id int not null,
+    ss1 smallint not null,
+    ss2 smallint not null,
+    ss3 smallint not null,
+    ss4 smallint not null,
 
-    ss1 decimal(10, 9) not null,
-    ss2 decimal(10, 9) not null,
-    ss3 decimal(10, 9) not null,
-    ss4 decimal(10, 9) not null,
-
-    foreign key (user_id) references user(user_id) on delete cascade,
-    primary key (ss_id)
-);
-
-
-# 초기 하체 데이터
-DROP table if exists InitSS;
-CREATE table InitSS (
-    initss_id int not null auto_increment,
-    user_id int not null,
-    ss_id int not null,
-    date datetime default current_timestamp,
-
-    foreign key (ss_id) references ss(ss_id),
-    foreign key (user_id) references user(user_id) on delete cascade,
-    primary key (initss_id)
+    foreign key (log_id) references Log(log_id) on delete cascade,
+    primary key (log_id)
 );
