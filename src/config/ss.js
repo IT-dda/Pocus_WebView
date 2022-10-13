@@ -2,6 +2,7 @@ const { SerialPort } = require('serialport');
 const { ReadlineParser } = require('@serialport/parser-readline');
 //import { axios } from 'axios';
 const axios = require('axios');
+let userid;
 
 const portName = new SerialPort({
   path: 'COM3',
@@ -32,7 +33,7 @@ module.exports = (server) => {
       ws.send(`클라이언트 접속을 환영합니다 from 서버`); // 데이터 전송
     }
 
-    parser.on('data', function (data) {
+    parser.on('data', async function (data) {
       //
       ws.send(data.toString('utf-8'));
       // axios.get('http://localhost:5000/lower/predict').then((result) => {
@@ -41,10 +42,11 @@ module.exports = (server) => {
 
       const val = data.toString('utf-8');
 
-      if (val !== '0,0,0,0') {
-        axios
-          .post('http://localhost:5000/lower/predict', {
+      if (val !== '0,0,0,0' && userid) {
+        await axios
+          .post('http://127.0.0.1:5000/lower/predict', {
             values: data.toString('utf-8'),
+            userid: userid.toString('utf-8'),
           })
           .then((result) => {
             //
@@ -60,6 +62,7 @@ module.exports = (server) => {
 
     // 3) 클라이언트로부터 메시지 수신 이벤트 처리
     ws.on('message', (msg) => {
+      userid = msg;
       console.log(`클라이언트에게 수신한 메시지 : ${msg}`);
       ws.send('메시지 잘 받았습니다! from 서버');
     });

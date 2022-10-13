@@ -4,6 +4,8 @@ let sensor_2 = document.querySelector('.sensor_2');
 let sensor_3 = document.querySelector('.sensor_3');
 let sensor_4 = document.querySelector('.sensor_4');
 let page = document.querySelector('h1');
+let userid = document.querySelector('#userid');
+const btn = document.querySelector('.btn');
 
 // 1. 웹소켓 클라이언트 객체 생성
 const webSocket = new WebSocket('ws://localhost:8000');
@@ -19,7 +21,9 @@ let flag = false;
 // 2-1) 연결 이벤트 처리
 webSocket.onopen = () => {
   console.log('웹소켓서버와 연결 성공');
+  webSocket.send(userid.value);
 };
+
 // 2-2) 메세지 수신 이벤트 처리
 const NOTIS = [
   '굿굿~',
@@ -36,7 +40,6 @@ webSocket.onmessage = function (event) {
     }
     if (page.innerHTML !== 'POCUS VIDEO 📹') {
       if (event.data !== '0,0,0,0') {
-        const btn = document.querySelector('.btn');
         btn.disabled = false;
       }
     }

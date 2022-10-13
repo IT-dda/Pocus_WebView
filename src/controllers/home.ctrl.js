@@ -34,6 +34,7 @@ const output = {
           console.log('login success');
           req.session.isLogined = true;
           req.session.loginData = loginParam[0];
+          req.session.userid = row[0].user_id;
           req.session.save((err) => {
             if (err) console.error('cant save session : ' + err);
             return req.session.save(() => {
@@ -134,6 +135,7 @@ const output = {
     console.log('GET /pocus is running...');
     res.render('pages/pocus', {
       isLogined: req.session.isLogined,
+      userid: req.session.userid,
       notiTime: NOTI_TIME,
     });
   },
