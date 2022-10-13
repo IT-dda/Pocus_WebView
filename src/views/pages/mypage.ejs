@@ -61,19 +61,17 @@
                   <button class="btn btn-primary">START Init</button>
                 </a>
 
-                <% let logs = [ { "date":"2022.05.16", "mp":"1, 2, 3, 4",
-                "ss":"2, 3, 4, 5" }, { "date":"2022.05.17", "mp":"1, 2, 3, 4",
-                "ss":"2, 3, 4, 5" }, { "date":"2022.05.18", "mp":"1, 2, 3, 4",
-                "ss":"2, 3, 4, 5" }, { "date":"2022.05.19", "mp":"1, 2, 3, 4",
-                "ss":"2, 3, 4, 5" } ] %>
+                <% let logs = [ { "date":"2022.05.16", "log":"턱 괴는 자세", },
+                { "date":"2022.05.17", "log":"다리 꼬는 자세", }, {
+                "date":"2022.05.18", "log":"양반 다리", }, {
+                "date":"2022.05.19", "log":"거북목 자세", } ] %>
 
                 <table class="table table-hover log_table">
                   <thead>
                     <tr>
                       <th scope="col" class="w_10">No</th>
                       <th scope="col" class="w_30">Date</th>
-                      <th scope="col" class="w_30">MediaPipe</th>
-                      <th scope="col" class="w_30">Sensor</th>
+                      <th scope="col" class="w_30">Log</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -81,8 +79,7 @@
                     <tr>
                       <th scope="row" class="w_10"><%= i+1 %></th>
                       <td class="w_30"><%= logs[i].date %></td>
-                      <td class="w_30"><%= logs[i].mp %></td>
-                      <td class="w_30"><%= logs[i].ss %></td>
+                      <td class="w_30"><%= logs[i].log %></td>
                     </tr>
                     <% } %>
                   </tbody>
