@@ -35,7 +35,8 @@ const output = {
     // });
     await axios
       .post('http://127.0.0.1:5000/upper/predict', {
-        values: imgData,
+        img: imgData,
+        userid: req.session.userid,
       })
       .then((result) => {
         console.log(result.data['message']);
@@ -43,6 +44,8 @@ const output = {
           res.render('pages/pocus', {
             isCorrect: result.data['message'],
             notiTime: NOTI_TIME,
+            userid: req.session.userid,
+            isLogined: req.session.isLogined,
           });
         }
       })
@@ -81,6 +84,7 @@ const output = {
           console.log('login success');
           req.session.isLogined = true;
           req.session.loginData = loginParam[0];
+          req.session.userid = row[0].user_id;
           req.session.save((err) => {
             if (err) console.error('cant save session : ' + err);
             return req.session.save(() => {
@@ -181,6 +185,7 @@ const output = {
     console.log('GET /pocus is running...');
     res.render('pages/pocus', {
       isLogined: req.session.isLogined,
+      userid: req.session.userid,
       notiTime: NOTI_TIME,
       isCorrect: isCorrect,
     });
