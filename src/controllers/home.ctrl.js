@@ -27,7 +27,7 @@ const output = {
     let conn = null;
     let row;
     try {
-      const sql = `select * from user where id='${loginParam[0]}'`;
+      let sql = `select * from user where id='${loginParam[0]}'`;
       conn = await db.getConnection();
       row = await conn.query(sql);
       console.log(row);
@@ -89,34 +89,39 @@ const output = {
       registerResult: req.flash('registerResult'),
     });
   },
-  register_post: (req, res) => {
+  register_post: async (req, res) => {
     console.log('POST /register is running...');
 
     let registerParam = [req.body.id, req.body.password];
 
-    db.query('select * from user where id=?', registerParam[0], (err, row) => {
-      if (err) console.error('error on select : ' + err);
+    let conn = null;
+    let row;
+    try {
+      let sql = `select * from user where id='${registerParam[0]}'`;
+      conn = await db.getConnection();
+      row = await conn.query(sql);
+      console.log(row);
+      // conn.release();
+    } catch (error) {
+      console.log(`db error : ${error}`);
+    }
 
-      if (row.length == 0) {
-        db.query(
-          'insert into user(id, password) values(?,?)',
-          registerParam,
-          (err, row) => {
-            if (err) console.error('error on insert : ' + err);
-          }
-        );
-        console.log('registration success');
-        res.redirect('/login');
-      } else {
-        req.session.save(() => {
-          console.log('id already exists');
-          req.flash('registerResult', 'fail');
-          return req.session.save(() => {
-            res.redirect('/register');
-          });
+    if (row[0].length == 0) {
+      let sql = `insert into user(id, password) values('${registerParam[0]}', '${registerParam[1]}')`;
+      row = await conn.query(sql);
+      console.log(row);
+      conn.release();
+      console.log('registration success');
+      res.redirect('/login');
+    } else {
+      req.session.save(() => {
+        console.log('id already exists');
+        req.flash('registerResult', 'fail');
+        return req.session.save(() => {
+          res.redirect('/register');
         });
-      }
-    });
+      });
+    }
   },
   mypage: (req, res) => {
     console.log('GET /mypage is running...');
