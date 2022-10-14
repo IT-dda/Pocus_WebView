@@ -43,6 +43,9 @@
   box-shadow: 2px 2px 3px black;
   width: 640px;
   height: 480px;
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg); /* Safari and Chrome */
+  -moz-transform: rotateY(180deg); /* Firefox */
 }
 
 #photo {
