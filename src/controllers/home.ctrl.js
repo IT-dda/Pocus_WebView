@@ -1,9 +1,6 @@
 // 'use strict';
 
 const db = require('../config/database');
-const User = require('../models/User');
-const Log = require('../models/Log');
-const SS = require('../models/SS');
 let NOTI_TIME;
 
 const output = {
@@ -123,50 +120,39 @@ const output = {
       });
     }
   },
-  mypage: (req, res) => {
+  mypage: async (req, res) => {
     console.log('GET /mypage is running...');
 
+    let conn = null;
+    let row;
+
     let userData;
-    db.query(
-      'select * from user where user_id=?',
-      req.session.userid,
-      (err, row) => {
-        if (err) console.error('something went wrong..');
-
-        if (row.length > 0) {
-          console.log('load user info');
-          console.log(row);
-          // userData = new User(row[0].user_id, row[0].id, row[0].password);
-          userData = row[0];
-        } else {
-          console.log('cant load user info from db. you might be logged out.');
-          res.redirect('/login');
-        }
+    try {
+      let sql = `select * from user where user_id=${req.session.userid}`;
+      conn = await db.getConnection();
+      row = await conn.query(sql);
+      if (row[0].length > 0) {
+        console.log('load user info');
+        userData = JSON.stringify(row[0][0]);
+      } else {
+        console.log('cant load user info from db. you might be logged out.');
+        res.redirect('/login');
       }
-    );
+    } catch (error) {
+      console.log(error);
+    }
 
-    let logData = [];
-    db.query(
-      'select * from log left outer join ss on log.log_id = ss.log_id where user_id=?',
-      req.session.userid,
-      (err, row) => {
-        if (err) console.error('something went wrong..');
-
-        if (row.length > 0) {
-          console.log('load logs');
-          console.log(row);
-          for (let r in row) {
-            logData.unshift(r);
-          }
-        } else {
-          console.log('cant load log info from db. you might be logged out.');
-          res.redirect('/login');
-        }
-      }
-    );
-
-    console.log(userData);
-    console.log(logData);
+    let logData;
+    try {
+      let sql = `select * from log left outer join ss on log.log_id = ss.log_id where user_id=${req.session.userid}`;
+      row = await conn.query(sql);
+      conn.release();
+      console.log('load logs');
+      row[0].reverse();
+      logData = JSON.stringify(row[0]);
+    } catch (error) {
+      console.log(error);
+    }
 
     res.render('pages/mypage', {
       isLogined: req.session.isLogined,
