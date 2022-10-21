@@ -1,0 +1,20 @@
+{
+  "tit": "당신의 자세 교정 파트너 Pocus",
+  "articles": [
+    {
+      "subtit": "Simple",
+      "desc": "웹캠과 노트북만 있다면 어디든!",
+      "img": "recommand1.png"
+    },
+    {
+      "subtit": "Log",
+      "desc": "나의 자세 데이터를 모아모아 기록 확인!",
+      "img": "recommand2.png"
+    },
+    {
+      "subtit": "Check",
+      "desc": "스트레칭 알림 기능으로 주기적으로 자세 점검!",
+      "img": "recommand3.png"
+    }
+  ]
+}

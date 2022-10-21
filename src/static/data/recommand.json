@@ -1,0 +1,14 @@
+{
+  "tit": "이런 분께 추천합니다!",
+  "articles": [
+    {
+      "desc": "하루 종일 컴퓨터에 앉아 근무하는 회사원!",
+      "img": "recommand1.png"
+    },
+    {
+      "desc": "매일 책상에 앉아 공부하는 청소년기 학생!",
+      "img": "recommand2.png"
+    },
+    { "desc": "나쁜 자세 습관으로 고생하는 일반인!", "img": "recommand3.png" }
+  ]
+}
