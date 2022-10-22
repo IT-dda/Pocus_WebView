@@ -141,7 +141,15 @@ const output = {
   register_post: async (req, res) => {
     console.log('POST /register is running...');
 
-    let registerParam = [req.body.id, req.body.password];
+    let registerParam = [
+      req.body.id,
+      req.body.password,
+      req.body.nickname,
+      req.body.birthday,
+      req.body.gender,
+      req.body.height,
+      req.body.weight,
+    ];
 
     let conn = null;
     let row;
@@ -156,7 +164,7 @@ const output = {
     }
 
     if (row[0].length == 0) {
-      let sql = `insert into user(id, password) values('${registerParam[0]}', '${registerParam[1]}')`;
+      let sql = `insert into user(id, password, nickname, birthday, gender, height, weight) values('${registerParam[0]}', '${registerParam[1]}', '${registerParam[2]}', '${registerParam[3]}', '${registerParam[4]}', '${registerParam[5]}', '${registerParam[6]}')`;
       row = await conn.query(sql);
       console.log(row);
       conn.release();
@@ -196,7 +204,7 @@ const output = {
 
     let logData;
     try {
-      let sql = `select log.log_id, log.date, log.date, log.warning, log.isUpper, ss.ss1, ss.ss2, ss.ss3, ss.ss4 from log left outer join ss on log.log_id = ss.log_id where user_id=${req.session.userid}`;
+      let sql = `select log.log_id, log.date, log.warning, log.isUpper, ss.ss1, ss.ss2, ss.ss3, ss.ss4 from log left outer join ss on log.log_id = ss.log_id where user_id=${req.session.userid}`;
       row = await conn.query(sql);
       conn.release();
       console.log('load logs');
@@ -213,6 +221,33 @@ const output = {
       userData: JSON.parse(userData),
       logData: JSON.parse(logData),
     });
+  },
+  mypage_post: async (req, res) => {
+    console.log('POST /mypage is running...');
+    console.log(req.body);
+
+    let registerParam = [
+      req.body.password,
+      req.body.nickname,
+      req.body.birthday,
+      req.body.gender,
+      req.body.height,
+      req.body.weight,
+    ];
+
+    console.log(registerParam[2]);
+
+    let conn = null;
+    let row;
+    try {
+      let sql = `update user set password='${registerParam[0]}', nickname='${registerParam[1]}', birthday='${registerParam[2]}', gender='${registerParam[3]}', height='${registerParam[4]}', weight='${registerParam[5]}' where user_id='${req.session.userid}'`;
+      conn = await db.getConnection();
+      row = await conn.query(sql);
+      console.log(row);
+      res.redirect('/mypage');
+    } catch (error) {
+      console.log(error);
+    }
   },
   init: (req, res) => {
     console.log('GET /init is running...');

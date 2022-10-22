@@ -5,11 +5,11 @@ CREATE table User (
     user_id int not null auto_increment,
     id varchar(20) not null unique,
     password varchar(20) not null,
---     nickname varchar(20) not null default 'user',
---     birthday date not null,
---     gender tinyint not null check (gender IN (0, 1)),
---     height tinyint not null,
---     weight tinyint not null,
+    nickname varchar(20) not null default 'user',
+    birthday date not null,
+    gender tinyint not null check (gender IN (0, 1)),
+    height int not null,
+    weight int not null,
 
     primary key (user_id)
 );
@@ -31,10 +31,10 @@ CREATE table Log (
 DROP table if exists SS;
 CREATE table SS (
     log_id int not null,
-    ss1 smallint not null,
-    ss2 smallint not null,
-    ss3 smallint not null,
-    ss4 smallint not null,
+    ss1 int not null,
+    ss2 int not null,
+    ss3 int not null,
+    ss4 int not null,
 
     foreign key (log_id) references Log(log_id) on delete cascade,
     primary key (log_id)
