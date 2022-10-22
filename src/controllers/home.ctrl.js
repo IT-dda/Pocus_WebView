@@ -69,26 +69,33 @@ const output = {
       loginResult: req.flash('loginResult'),
     });
   },
-  login_post: (req, res) => {
+  login_post: async (req, res) => {
     console.log('POST /login is running...');
-
     let loginParam = [req.body.id, req.body.password];
 
-    db.query('select * from user where id=?', loginParam[0], (err, row) => {
-      if (err) console.error('error on finding user with id : ' + err);
+    let conn = null;
+    let row;
+    try {
+      let sql = `select * from user where id='${loginParam[0]}'`;
+      conn = await db.getConnection();
+      row = await conn.query(sql);
+      console.log(row);
+      conn.release();
+    } catch (error) {
+      console.log(`db error : ${error}`);
+    }
 
-      if (row.length > 0) {
-        console.log('id exists');
-
-        if (loginParam[1] === row[0].password) {
-          console.log('login success');
-          req.session.isLogined = true;
-          req.session.loginData = loginParam[0];
-          req.session.userid = row[0].user_id;
-          req.session.save((err) => {
-            if (err) console.error('cant save session : ' + err);
-            return req.session.save(() => {
-              res.redirect('/');
+    if (row[0].length > 0) {
+      console.log('id exists');
+      if (loginParam[1] === row[0][0].password) {
+        console.log('login success');
+        req.session.isLogined = true;
+        req.session.loginData = loginParam[0];
+        req.session.userid = row[0][0].user_id;
+        req.session.save((err) => {
+          if (err) console.error('cant save session : ' + err);
+          return req.session.save(() => {
+            res.redirect('/');
             });
           });
         } else {
@@ -99,17 +106,25 @@ const output = {
               res.redirect('/login');
             });
           });
-        }
+        });
       } else {
         req.session.save(() => {
-          console.log('id not exists');
+          console.log('wrong password');
           req.flash('loginResult', 'fail');
           return req.session.save(() => {
             res.redirect('/login');
           });
         });
       }
-    });
+    } else {
+      req.session.save(() => {
+        console.log('id not exists');
+        req.flash('loginResult', 'fail');
+        return req.session.save(() => {
+          res.redirect('/login');
+        });
+      });
+    }
   },
   logout: (req, res) => {
     console.log('GET /logout is running...');
@@ -132,40 +147,79 @@ const output = {
       registerResult: req.flash('registerResult'),
     });
   },
-  register_post: (req, res) => {
+  register_post: async (req, res) => {
     console.log('POST /register is running...');
 
     let registerParam = [req.body.id, req.body.password];
 
-    db.query('select * from user where id=?', registerParam[0], (err, row) => {
-      if (err) console.error('error on select : ' + err);
+    let conn = null;
+    let row;
+    try {
+      let sql = `select * from user where id='${registerParam[0]}'`;
+      conn = await db.getConnection();
+      row = await conn.query(sql);
+      console.log(row);
+      // conn.release();
+    } catch (error) {
+      console.log(`db error : ${error}`);
+    }
 
-      if (row.length == 0) {
-        db.query(
-          'insert into user(id, password) values(?,?)',
-          registerParam,
-          (err, row) => {
-            if (err) console.error('error on insert : ' + err);
-          }
-        );
-        console.log('registration success');
-        res.redirect('/login');
-      } else {
-        req.session.save(() => {
-          console.log('id already exists');
-          req.flash('registerResult', 'fail');
-          return req.session.save(() => {
-            res.redirect('/register');
-          });
+    if (row[0].length == 0) {
+      let sql = `insert into user(id, password) values('${registerParam[0]}', '${registerParam[1]}')`;
+      row = await conn.query(sql);
+      console.log(row);
+      conn.release();
+      console.log('registration success');
+      res.redirect('/login');
+    } else {
+      req.session.save(() => {
+        console.log('id already exists');
+        req.flash('registerResult', 'fail');
+        return req.session.save(() => {
+          res.redirect('/register');
         });
-      }
-    });
+      });
+    }
   },
-  mypage: (req, res) => {
+  mypage: async (req, res) => {
     console.log('GET /mypage is running...');
+
+    let conn = null;
+    let row;
+
+    let userData;
+    try {
+      let sql = `select * from user where user_id=${req.session.userid}`;
+      conn = await db.getConnection();
+      row = await conn.query(sql);
+      if (row[0].length > 0) {
+        console.log('load user info');
+        userData = JSON.stringify(row[0][0]);
+      } else {
+        console.log('cant load user info from db. you might be logged out.');
+        res.redirect('/login');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+    let logData;
+    try {
+      let sql = `select * from log left outer join ss on log.log_id = ss.log_id where user_id=${req.session.userid}`;
+      row = await conn.query(sql);
+      conn.release();
+      console.log('load logs');
+      row[0].reverse();
+      logData = JSON.stringify(row[0]);
+    } catch (error) {
+      console.log(error);
+    }
+
     res.render('pages/mypage', {
       isLogined: req.session.isLogined,
       username: req.session.loginData,
+      userData: userData,
+      logData: logData,
     });
   },
   init: (req, res) => {
