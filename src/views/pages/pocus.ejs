@@ -7,6 +7,12 @@
     <script defer src="/js/webcam.js"></script>
   </head>
   <body class="d-flex align-items-center body_pocus bg_darkblack color_white">
+    <form method="post" action="/test4" name="imgDataForm" id="imgDataForm">
+      <input type="hidden" name="imgData" id="imgData" value="" />
+      <input type="hidden" name="userid" id="userid" value="<%= userid %>" />
+      <!-- <button type="submit" id="btn">click</button> -->
+    </form>
+    <div id="upper" class="hidden"><%= isCorrect %></div>
     <input type="hidden" name="notiTime" value="<%= notiTime %>" />
     <main class="container">
       <h1 class="text-center">POCUS VIDEO 📹</h1>
@@ -15,7 +21,22 @@
         <article class="col-6 d-flex flex-column upper_box">
           <p class="text-center">Upper body</p>
           <div class="flex-grow-1">
-            <video autoplay="true" id="videoElement"></video>
+            <div class="contentarea">
+              <div class="camera">
+                <video id="video">Video stream not available.</video>
+                <!-- <button id="startbutton">Take photo</button> -->
+              </div>
+              <canvas id="canvas"> </canvas>
+              <div class="d-none output">
+                <!-- <div class="output"> -->
+                <img
+                  id="photo"
+                  alt="The screen capture will appear in this box."
+                />
+              </div>
+            </div>
+
+            <!-- <video autoplay="true" id="videoElement"></video> -->
           </div>
         </article>
         <article class="h-100 col-6 d-flex flex-column lower_box">

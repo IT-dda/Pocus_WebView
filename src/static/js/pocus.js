@@ -51,6 +51,16 @@ const notify = () => {
   notification.onclick = () => window.open(STRETCHING_LINK);
 };
 
+let upper = document.querySelector('#upper');
+const upper_pred = (upper) => {
+  const audio = new Audio(BEEP_SOUND);
+  audio.play();
+  let notification = new Notification(U_NOTI_TITLE, {
+    icon: NOTI_ICON, // 나중에 바꾸기
+    body: '상체나쁜자세',
+  });
+};
+
 window.onload = () => {
   if (!window.Notification || !NOTI_TIME) {
     return;
@@ -58,5 +68,6 @@ window.onload = () => {
 
   Notification.requestPermission();
   calculate();
+  upper_pred(upper);
 };
 $btn_power_off.addEventListener('click', () => powerOffAlert());

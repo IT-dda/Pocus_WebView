@@ -1,9 +1,61 @@
 // 'use strict';
 
 const db = require('../config/database');
+var request = require('request');
+const axios = require('axios');
 let NOTI_TIME;
+let isCorrect;
 
 const output = {
+  test1: (req, res) => {
+    res.render('pages/webcamTest');
+  },
+  test2: (req, res) => {
+    console.log('node 2 flask test2');
+
+    var geturl = 'http://127.0.0.1:5000/test/image';
+    request.get(
+      {
+        url: geturl,
+      },
+      function (error, response, body) {
+        console.log('line 17) ', JSON.parse(body));
+        res.send(JSON.parse(body));
+      }
+    );
+  },
+  test3: (req, res) => {
+    console.log(req.query.imgData);
+  },
+  test4: async (req, res) => {
+    // console.log(req.body.imgData);
+    let imgData = req.body.imgData;
+    // axios.get('http://127.0.0.1:5000/conn/image').then((result) => {
+    //   console.log(result.data);
+    // });
+    await axios
+      .post('http://127.0.0.1:5000/upper/predict', {
+        img: imgData,
+        userid: req.session.userid,
+      })
+      .then((result) => {
+        console.log(result.data['message']);
+        if (result.data['message'] > 0) {
+          res.render('pages/pocus', {
+            isCorrect: result.data['message'],
+            notiTime: NOTI_TIME,
+            userid: req.session.userid,
+            isLogined: req.session.isLogined,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
+  imgData: (req, res) => {
+    res.send('성공!!');
+  },
   home: (req, res) => {
     console.log('GET / is running...');
     res.render('pages/index', {
@@ -32,6 +84,7 @@ const output = {
           console.log('login success');
           req.session.isLogined = true;
           req.session.loginData = loginParam[0];
+          req.session.userid = row[0].user_id;
           req.session.save((err) => {
             if (err) console.error('cant save session : ' + err);
             return req.session.save(() => {
@@ -132,7 +185,9 @@ const output = {
     console.log('GET /pocus is running...');
     res.render('pages/pocus', {
       isLogined: req.session.isLogined,
+      userid: req.session.userid,
       notiTime: NOTI_TIME,
+      isCorrect: isCorrect,
     });
   },
 };
