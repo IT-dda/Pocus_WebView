@@ -96,15 +96,6 @@ const output = {
           if (err) console.error('cant save session : ' + err);
           return req.session.save(() => {
             res.redirect('/');
-            });
-          });
-        } else {
-          req.session.save(() => {
-            console.log('wrong password');
-            req.flash('loginResult', 'fail');
-            return req.session.save(() => {
-              res.redirect('/login');
-            });
           });
         });
       } else {
@@ -205,12 +196,13 @@ const output = {
 
     let logData;
     try {
-      let sql = `select * from log left outer join ss on log.log_id = ss.log_id where user_id=${req.session.userid}`;
+      let sql = `select log.log_id, log.date, log.date, log.warning, log.isUpper, ss.ss1, ss.ss2, ss.ss3, ss.ss4 from log left outer join ss on log.log_id = ss.log_id where user_id=${req.session.userid}`;
       row = await conn.query(sql);
       conn.release();
       console.log('load logs');
       row[0].reverse();
       logData = JSON.stringify(row[0]);
+      console.log(row);
     } catch (error) {
       console.log(error);
     }
@@ -218,8 +210,8 @@ const output = {
     res.render('pages/mypage', {
       isLogined: req.session.isLogined,
       username: req.session.loginData,
-      userData: userData,
-      logData: logData,
+      userData: JSON.parse(userData),
+      logData: JSON.parse(logData),
     });
   },
   init: (req, res) => {
