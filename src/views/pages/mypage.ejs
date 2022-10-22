@@ -107,13 +107,9 @@
                       type="text"
                       class="form-control"
                       id="usernameInput"
+                      value="<%= userData.id %>"
+                      disabled
                     />
-                  </div>
-                  <div class="mb-3">
-                    <label for="emailInput" class="form-label">
-                      Email address
-                    </label>
-                    <input type="email" class="form-control" id="emailInput" />
                   </div>
                   <div class="mb-3">
                     <label for="passwordInput" class="form-label"
@@ -123,6 +119,7 @@
                       type="password"
                       class="form-control"
                       id="passwordInput"
+                      value="<%= userData.password %>"
                     />
                   </div>
                   <div class="text-center">

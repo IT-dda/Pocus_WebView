@@ -96,15 +96,6 @@ const output = {
           if (err) console.error('cant save session : ' + err);
           return req.session.save(() => {
             res.redirect('/');
-            });
-          });
-        } else {
-          req.session.save(() => {
-            console.log('wrong password');
-            req.flash('loginResult', 'fail');
-            return req.session.save(() => {
-              res.redirect('/login');
-            });
           });
         });
       } else {
@@ -215,11 +206,16 @@ const output = {
       console.log(error);
     }
 
+    // sean test
+    console.log(userData);
+    console.log('===================================================');
+    console.log(logData);
+
     res.render('pages/mypage', {
       isLogined: req.session.isLogined,
       username: req.session.loginData,
-      userData: userData,
-      logData: logData,
+      userData: JSON.parse(userData),
+      logData: JSON.parse(logData),
     });
   },
   init: (req, res) => {
