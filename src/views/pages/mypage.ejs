@@ -128,6 +128,59 @@
                       value="<%= userData.password %>"
                     />
                   </div>
+                  <div class="mb-3">
+                    <label for="nickname" class="form-label"
+                      >Nickname</label
+                    >
+                    <input
+                    type="text"
+                    name="nickname"
+                    id="nickname"
+                    class="form-control"
+                    placeholder="Nickname"
+                    value="<%= userData.nickname %>"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="birthday" class="form-label"
+                      >Birthday</label
+                    >
+                    <input
+                    type="date"
+                    name="birthday"
+                    id="birthday"
+                    class="form-control"
+                    placeholder="Birthday"
+                    value="<%= userData.birthday.slice(0, 10) %>"
+                    />
+                  </div>
+                  <div class="input-group mb-3">
+                    <label class="input-group-text" for="gender">Gender</label>
+                    <select class="form-select" id="gender" name="gender">
+                      <option <%= userData.gender == 0 ? "selected" : "" %> value="0">Female</option>
+                      <option <%= userData.gender == 1 ? "selected" : "" %> value="1">Male</option>
+                    </select>
+                  </div>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">Height</span>
+                    <input
+                      type="number"
+                      class="form-control mb-0"
+                      name="height"
+                      placeholder="cm"
+                      value="<%= userData.height %>"
+                      />
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">Weight</span>
+                        <input
+                        type="number"
+                        class="form-control mb-0"
+                        name="weight"
+                        placeholder="kg"
+                        value="<%= userData.weight %>"
+                    />
+                  </div>
                   <div class="text-center">
                     <button type="submit" class="btn btn-primary">Edit</button>
                   </div>
