@@ -141,7 +141,15 @@ const output = {
   register_post: async (req, res) => {
     console.log('POST /register is running...');
 
-    let registerParam = [req.body.id, req.body.password];
+    let registerParam = [
+      req.body.id,
+      req.body.password,
+      req.body.nickname,
+      req.body.birthday,
+      req.body.gender,
+      req.body.height,
+      req.body.weight,
+    ];
 
     let conn = null;
     let row;
@@ -156,7 +164,7 @@ const output = {
     }
 
     if (row[0].length == 0) {
-      let sql = `insert into user(id, password) values('${registerParam[0]}', '${registerParam[1]}')`;
+      let sql = `insert into user(id, password, nickname, birthday, gender, height, weight) values('${registerParam[0]}', '${registerParam[1]}', '${registerParam[2]}', '${registerParam[3]}', '${registerParam[4]}', '${registerParam[5]}', '${registerParam[6]}')`;
       row = await conn.query(sql);
       console.log(row);
       conn.release();
