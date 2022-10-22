@@ -17,6 +17,8 @@ const app = express();
 // 라우팅
 const home = require('./src/routes');
 
+const hour = 3600000;
+
 // 앱 세팅
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
@@ -41,7 +43,7 @@ app.use(
     secret: 'testSecret', // 데이터를 암호화 옵션, TODO: .env로 이동
     resave: false, // 요청이 왔을때 세션을 수정하지 않더라도 다시 저장소에 저장되도록
     saveUninitialized: true, // 세션이 필요하면 세션을 실행(서버에 부담을 줄이기 위해)
-    cookie: { expires: 60 * 60 * 24 },
+    cookie: { expires: new Date(Date.now() + hour) },
     store: new FileStore(), // 세션이 데이터를 저장할 곳.
   })
 );

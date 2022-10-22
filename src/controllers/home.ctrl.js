@@ -64,6 +64,11 @@ const output = {
   },
   login: (req, res) => {
     console.log('GET /login is running...');
+
+    if (req.session.isLogined === true) {
+      return res.redirect('/');
+    }
+
     res.render('pages/login', {
       isLogined: req.session.isLogined,
       loginResult: req.flash('loginResult'),
@@ -125,6 +130,13 @@ const output = {
       req.session.destroy((err) => {
         if (err) console.error('logout error : ' + err);
       });
+      // req.session.loginData = false;
+      // req.session.save((err) => {
+      //   if (err) console.error('cant save session : ' + err);
+      //   return req.session.save(() => {
+      //     res.redirect('/');
+      //   });
+      // });
       console.log('logout success');
     } else {
       console.log('no information to logout');
@@ -133,6 +145,11 @@ const output = {
   },
   register: (req, res) => {
     console.log('GET /register is running...');
+
+    if (req.session.isLogined === true) {
+      return res.redirect('/');
+    }
+
     res.render('pages/register', {
       isLogined: req.session.isLogined,
       registerResult: req.flash('registerResult'),
@@ -182,6 +199,10 @@ const output = {
   },
   mypage: async (req, res) => {
     console.log('GET /mypage is running...');
+
+    if (req.session.isLogined !== true) {
+      return res.redirect('/login');
+    }
 
     let conn = null;
     let row;
@@ -251,6 +272,11 @@ const output = {
   },
   init: (req, res) => {
     console.log('GET /init is running...');
+
+    if (req.session.isLogined !== true) {
+      return res.redirect('/login');
+    }
+
     res.render('pages/init', {
       isLogined: req.session.isLogined,
     });
@@ -264,6 +290,11 @@ const output = {
   },
   pocus: (req, res) => {
     console.log('GET /pocus is running...');
+
+    if (req.session.isLogined !== true) {
+      return res.redirect('/login');
+    }
+
     res.render('pages/pocus', {
       isLogined: req.session.isLogined,
       userid: req.session.userid,
