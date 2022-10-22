@@ -20,6 +20,7 @@ router.get('/imgData', ctrl.output.imgData);
 router.post('/register', ctrl.output.register_post);
 router.post('/login', ctrl.output.login_post);
 router.post('/init', ctrl.output.init_post);
+router.post('/mypage', ctrl.output.mypage_post);
 router.post('/test4', ctrl.output.test4);
 
 module.exports = router;
