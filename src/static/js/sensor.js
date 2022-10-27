@@ -77,14 +77,26 @@ webSocket.onerror = function (event) {
 function sensor_value(value, index) {
   var color;
 
-  if (value >= 0 && value < 256) {
-    color = '#3e75ff';
-  } else if (value < 512) {
-    color = '#009e63';
-  } else if (value < 768) {
-    color = '#ffc65c';
+  if (value >= 0 && value < 200) {
+    color = '#ffe3e3';
+  } else if (value < 400) {
+    color = '#ffcccc';
+  } else if (value < 600) {
+    color = '#ffb5b5';
+  } else if (value < 700) {
+    color = '#ff9e9e';
+  } else if (value < 750) {
+    color = '#ff8585';
+  } else if (value < 800) {
+    color = '#ff6e6e';
+  } else if (value < 850) {
+    color = '#ff5757';
+  } else if (value < 900) {
+    color = '#ff4040';
+  } else if (value < 950) {
+    color = '#ff2929';
   } else if (value < 1024) {
-    color = '#f22851';
+    color = '#ff0000';
   }
 
   switch (index) {
