@@ -40,14 +40,12 @@ const output = {
       })
       .then((result) => {
         console.log(result.data['message']);
-        if (result.data['message'] > 0) {
-          res.render('pages/pocus', {
-            isCorrect: result.data['message'],
-            notiTime: NOTI_TIME,
-            userid: req.session.userid,
-            isLogined: req.session.isLogined,
-          });
-        }
+        res.render('pages/pocus', {
+          isCorrect: result.data['message'],
+          notiTime: NOTI_TIME,
+          userid: req.session.userid,
+          isLogined: req.session.isLogined,
+        });
       })
       .catch((error) => {
         console.log(error);
