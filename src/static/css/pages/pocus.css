@@ -35,65 +35,61 @@
   flex-direction: column;
 }
 
-.sensor_box {
+/* webcamTest */
+
+#video {
+  box-shadow: 2px 2px 3px black;
+  width: 640px;
+  height: 480px;
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg); /* Safari and Chrome */
+  -moz-transform: rotateY(180deg); /* Firefox */
+}
+
+#photo {
+  border: 1px solid black;
+  box-shadow: 2px 2px 3px black;
+  width: 640px;
+  height: 480px;
+}
+
+#canvas {
+  display: none;
+}
+
+.camera {
+  width: 640px;
+  display: inline-block;
+}
+
+/* .output {
+  width: 340px;
+  display: inline-block;
+  vertical-align: top;
+} */
+
+/* #startbutton {
+  display: block;
   position: relative;
-  border-radius: 5px;
-  background-color: var(--color-white);
-  background-image: url("../../image/armchair.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  color: var(--color-darkblack);
-  font-size: 1.2rem;
-  word-break: break-all;
+  margin-left: auto;
+  margin-right: auto;
+  bottom: 32px;
+  background-color: rgba(0, 150, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0px 0px 1px 2px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+  font-family: 'Lucida Grande', 'Arial', sans-serif;
+  color: rgba(255, 255, 255, 1);
+} */
+
+.contentarea {
+  font-size: 16px;
+  font-family: 'Lucida Grande', 'Arial', sans-serif;
+  /* width: 760px; */
+  width: 100%;
 }
 
-.pocus_page .sensors {
-  position: relative;
-  width: 50%;
-  margin: auto;
-  aspect-ratio: 1 / 1;
-}
-
-.pocus_page .sensor_box img {
-  width: 90%;
-}
-
-.pocus_page .sensor_box .sensor {
-  position: absolute;
-  width : 48%;
-  height : 48%;
-  border-radius: 50%;
-}
-
-.pocus_page .sensor_box .sensor_1 {
-  top: 0;
-  left: 0;
-}
-
-.pocus_page .sensor_box .sensor_2 {
-  top: 52%;
-  left: 0;
-}
-
-.pocus_page .sensor_box .sensor_3 {
-  top: 0;
-  left: 52%;
-}
-
-.pocus_page .sensor_box .sensor_4 {
-  top: 52%;
-  left: 52%;
-}
-
-@media screen and (min-width: 1200px) {
-  .pocus_page .sensors {
-    width: 40%;
-  }
-}
-
-@media screen and (min-width: 1400px) {
-  .pocus_page .sensors {
-    width: 35%;
-  }
+/* 상체 포즈 예측 저장 div */
+.hidden {
+  visibility: hidden;
 }

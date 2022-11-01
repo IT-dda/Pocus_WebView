@@ -71,15 +71,23 @@
                     <tr>
                       <th scope="col" class="w_10">No</th>
                       <th scope="col" class="w_30">Date</th>
-                      <th scope="col" class="w_30">Log</th>
+                      <th scope="col" class="w_30">Type</th>
+                      <th scope="col" class="w_30">Sensor</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <% for (let i=0; i < logs.length; i++) { %>
+                    <% for (let i=0; i < logData.length; i++) { %>
                     <tr>
-                      <th scope="row" class="w_10"><%= i+1 %></th>
-                      <td class="w_30"><%= logs[i].date %></td>
-                      <td class="w_30"><%= logs[i].log %></td>
+                      <th scope="row" class="w_10">
+                        <%= logData.length - i %>
+                      </th>
+                      <td class="w_30"><%= logData[i].date.slice(0, 10) %></td>
+                      <td class="w_30"><%= logData[i].warning %></td>
+                      <td class="w_30">
+                        <%= logData[i].ss1 ? `${logData[i].ss1},
+                        ${logData[i].ss2},${logData[i].ss3},${logData[i].ss4}` :
+                        "-" %>
+                      </td>
                     </tr>
                     <% } %>
                   </tbody>
@@ -95,7 +103,7 @@
               tabindex="0"
             >
               <div class="d-flex flex-column align-items-center">
-                <form class="personal_form">
+                <form method="post" action="/mypage" class="personal_form">
                   <div class="mb-3">
                     <label for="usernameInput" class="form-label">
                       Username
@@ -104,13 +112,9 @@
                       type="text"
                       class="form-control"
                       id="usernameInput"
+                      value="<%= userData.id %>"
+                      disabled
                     />
-                  </div>
-                  <div class="mb-3">
-                    <label for="emailInput" class="form-label">
-                      Email address
-                    </label>
-                    <input type="email" class="form-control" id="emailInput" />
                   </div>
                   <div class="mb-3">
                     <label for="passwordInput" class="form-label"
@@ -118,8 +122,63 @@
                     >
                     <input
                       type="password"
+                      name="password"
                       class="form-control"
                       id="passwordInput"
+                      value="<%= userData.password %>"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="nickname" class="form-label"
+                      >Nickname</label
+                    >
+                    <input
+                    type="text"
+                    name="nickname"
+                    id="nickname"
+                    class="form-control"
+                    placeholder="Nickname"
+                    value="<%= userData.nickname %>"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="birthday" class="form-label"
+                      >Birthday</label
+                    >
+                    <input
+                    type="date"
+                    name="birthday"
+                    id="birthday"
+                    class="form-control"
+                    placeholder="Birthday"
+                    value="<%= userData.birthday.slice(0, 10) %>"
+                    />
+                  </div>
+                  <div class="input-group mb-3">
+                    <label class="input-group-text" for="gender">Gender</label>
+                    <select class="form-select" id="gender" name="gender">
+                      <option <%= userData.gender == 0 ? "selected" : "" %> value="0">Female</option>
+                      <option <%= userData.gender == 1 ? "selected" : "" %> value="1">Male</option>
+                    </select>
+                  </div>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">Height</span>
+                    <input
+                      type="number"
+                      class="form-control mb-0"
+                      name="height"
+                      placeholder="cm"
+                      value="<%= userData.height %>"
+                      />
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">Weight</span>
+                        <input
+                        type="number"
+                        class="form-control mb-0"
+                        name="weight"
+                        placeholder="kg"
+                        value="<%= userData.weight %>"
                     />
                   </div>
                   <div class="text-center">
