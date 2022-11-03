@@ -85,7 +85,7 @@
                       <td class="w_30"><%= logData[i].date.slice(0, 10) %></td>
                       <td class="w_30"><%= logData[i].warning %></td>
                       <td class="w_30">
-                        <%= logData[i].ss1 ? `${logData[i].ss1},
+                        <%= logData[i].isUpper === 0 ? `${logData[i].ss1},
                         ${logData[i].ss2},${logData[i].ss3},${logData[i].ss4}` :
                         "-" %>
                       </td>

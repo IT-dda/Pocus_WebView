@@ -224,7 +224,7 @@ const output = {
 
     let logData;
     try {
-      let sql = `select log.log_id, log.date, log.warning, log.isUpper, ss.ss1, ss.ss2, ss.ss3, ss.ss4 from log left outer join ss on log.log_id = ss.log_id where user_id=${req.session.userid}`;
+      let sql = `select log.log_id, log.date, log.warning, log.isUpper, ss.ss1, ss.ss2, ss.ss3, ss.ss4 from log left outer join ss on log.log_id = ss.log_id where user_id=${req.session.userid} order by log.date asc`;
       row = await conn.query(sql);
       conn.release();
       console.log('load logs');
