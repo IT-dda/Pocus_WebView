@@ -94,6 +94,7 @@ const output = {
         console.log('login success');
         req.session.isLogined = true;
         req.session.loginData = loginParam[0];
+        req.session.nickname = row[0][0].nickname;
         req.session.userid = row[0][0].user_id;
         req.session.save((err) => {
           if (err) console.error('cant save session : ' + err);
@@ -237,6 +238,7 @@ const output = {
     res.render('pages/mypage', {
       isLogined: req.session.isLogined,
       username: req.session.loginData,
+      nickname: req.session.nickname,
       userData: JSON.parse(userData),
       logData: JSON.parse(logData),
     });
