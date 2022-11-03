@@ -24,7 +24,8 @@
 }
 
 .init_body {
-  height: 500px;
+  /* height: 500px; */
+  height: 65%;
   margin-bottom: calc(var(--base-space) * 5);
 }
 
@@ -81,6 +82,10 @@
   color: var(--color-darkblack);
   font-size: 1.2rem;
   word-break: break-all;
+}
+
+.pocus_page .lower_box .sensor_box {
+  margin-top: 0;
 }
 
 .pocus_page .sensors,
