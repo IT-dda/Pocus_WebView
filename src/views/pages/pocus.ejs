@@ -4,13 +4,23 @@
     <%- include("../include") %>
 
     <title>Pocus</title>
+
+    <!-- axios cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <script defer src="/js/webcam.js"></script>
     <script defer src="/js/sensor.js"></script>
   </head>
+<<<<<<< HEAD
   <body
     class="d-flex align-items-center body_pocus bg_darkblack color_white pocus_page"
   >
     <input type="hidden" name="userid" id="userid" value="<%= userid %>" />
+=======
+  <body class="d-flex align-items-center body_pocus bg_darkblack color_white">
+    <input type="hidden" name="userid" id="userid" value="<%= userid %>" />
+    <div id="upper" class="hidden"><%= isCorrect %></div>
+>>>>>>> 117d3b32e7ecc78ec646168c38bc42f7e45ca284
     <input type="hidden" name="notiTime" value="<%= notiTime %>" />
     <main class="container">
       <h1 class="text-center">POCUS VIDEO 📹</h1>
@@ -19,7 +29,22 @@
         <article class="col-6 d-flex flex-column upper_box">
           <p class="text-center">Upper body</p>
           <div class="flex-grow-1">
-            <video autoplay="true" id="videoElement"></video>
+            <div class="contentarea">
+              <div class="camera">
+                <video id="video">Video stream not available.</video>
+                <!-- <button id="startbutton">Take photo</button> -->
+              </div>
+              <canvas id="canvas"> </canvas>
+              <div class="d-none output">
+                <!-- <div class="output"> -->
+                <img
+                  id="photo"
+                  alt="The screen capture will appear in this box."
+                />
+              </div>
+            </div>
+
+            <!-- <video autoplay="true" id="videoElement"></video> -->
           </div>
         </article>
         <article class="h-100 col-6 d-flex flex-column lower_box">
