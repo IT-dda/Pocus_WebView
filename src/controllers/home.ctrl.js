@@ -30,9 +30,6 @@ const output = {
   test4: async (req, res) => {
     // console.log(req.body.imgData);
     let imgData = req.body.imgData;
-    // axios.get('http://127.0.0.1:5000/conn/image').then((result) => {
-    //   console.log(result.data);
-    // });
     await axios
       .post('http://127.0.0.1:5000/upper/predict', {
         img: imgData,
@@ -40,7 +37,7 @@ const output = {
       })
       .then((result) => {
         console.log(result.data['message']);
-        res.render('pages/pocus', {
+        res.send({
           isCorrect: result.data['message'],
           notiTime: NOTI_TIME,
           userid: req.session.userid,
@@ -284,7 +281,7 @@ const output = {
   init_post: (req, res) => {
     console.log('POST /init is running...');
     const { min } = req.body;
-    NOTI_TIME = min;
+    NOTI_TIME = min ? Number(min) : 20;
 
     res.redirect('/pocus');
   },
