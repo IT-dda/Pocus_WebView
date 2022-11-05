@@ -41,14 +41,9 @@ const powerOffAlert = () => {
 };
 
 const calculate = () => {
-  let now = new Date();
-  let minutes = now.getMinutes();
-  let seconds = now.getSeconds();
-  console.log(minutes);
-  console.log(seconds);
-  if (minutes % NOTI_TIME === 0 && seconds > 13 && seconds < 20) {
+  setInterval(() => {
     notify();
-  }
+  }, 1000 * 60 * NOTI_TIME);
 };
 
 const notify = () => {
