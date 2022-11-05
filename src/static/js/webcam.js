@@ -15,6 +15,7 @@
   // width to the value defined here, but the height will be
   // calculated based on the aspect ratio of the input stream.
 
+  const TAKE_PIC_TIME = 5000;
   const width = 640; // We will scale the photo width to this
   let height = 0; // This will be computed based on the input stream
 
@@ -100,7 +101,7 @@
     // );
     setInterval(function () {
       takepicture();
-    }, 3000);
+    }, TAKE_PIC_TIME);
 
     clearphoto();
   }
@@ -128,8 +129,11 @@
 
   function takepicture() {
     const context = canvas.getContext('2d');
+
+    const formData = new FormData();
     imgDataInput = document.querySelector('#imgData');
-    imgDataForm = document.querySelector('#imgDataForm');
+    userIdInput = document.querySelector('#userid');
+
     if (width && height) {
       canvas.width = width;
       canvas.height = height;
@@ -144,7 +148,25 @@
       // imgDataForm.addEventListener('submit', function () {
       //   console.log('imgDataForm 전송 완료?!');
       // });
-      document.imgDataForm.submit();
+      // document.imgDataForm.submit();
+
+      formData.append('imgData', imgDataInput.value);
+      formData.append('userid', userid.value);
+      axios({
+        method: 'POST',
+        url: '/test4',
+        data: formData,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          // enctype="multipart/form-data"
+        },
+      })
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
       clearphoto();
     }

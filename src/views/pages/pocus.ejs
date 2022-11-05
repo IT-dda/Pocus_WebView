@@ -4,14 +4,14 @@
     <%- include("../include") %>
 
     <title>Pocus</title>
+
+    <!-- axios cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <script defer src="/js/webcam.js"></script>
   </head>
   <body class="d-flex align-items-center body_pocus bg_darkblack color_white">
-    <form method="post" action="/test4" name="imgDataForm" id="imgDataForm">
-      <input type="hidden" name="imgData" id="imgData" value="" />
-      <input type="hidden" name="userid" id="userid" value="<%= userid %>" />
-      <!-- <button type="submit" id="btn">click</button> -->
-    </form>
+    <input type="hidden" name="userid" id="userid" value="<%= userid %>" />
     <div id="upper" class="hidden"><%= isCorrect %></div>
     <input type="hidden" name="notiTime" value="<%= notiTime %>" />
     <main class="container">
