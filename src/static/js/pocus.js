@@ -41,14 +41,9 @@ const powerOffAlert = () => {
 };
 
 const calculate = () => {
-  let now = new Date();
-  let minutes = now.getMinutes();
-  let seconds = now.getSeconds();
-  console.log(minutes);
-  console.log(seconds);
-  if (minutes % NOTI_TIME === 0 && seconds > 13 && seconds < 20) {
+  setInterval(() => {
     notify();
-  }
+  }, 1000 * 60 * NOTI_TIME);
 };
 
 const notify = () => {
@@ -71,8 +66,14 @@ const notify = () => {
   notification.onclick = () => window.open(STRETCHING_LINK);
 };
 
-let upper = document.querySelector('#upper').innerHTML;
-const upper_pred = (upper) => {
+const upper_pred = () => {
+  setInterval(() => {
+    notify_upper();
+  }, 5000);
+};
+
+const notify_upper = () => {
+  let upper = document.querySelector('#upper').innerHTML;
   console.log(UPPER_POSE[upper] + ' 자세가 인식되었습니다.');
   const audio = new Audio(BEEP_SOUND);
   audio.play();
@@ -80,6 +81,7 @@ const upper_pred = (upper) => {
     icon: NOTI_ICON, // 나중에 바꾸기
     body: UPPER_POSE[upper] + UPPER_MSG,
   });
+  console.log(notification);
 };
 
 window.onload = () => {
@@ -89,8 +91,6 @@ window.onload = () => {
 
   Notification.requestPermission();
   calculate();
-  if (upper > 0) {
-    upper_pred(upper);
-  }
+  // upper_pred();
 };
 $btn_power_off.addEventListener('click', () => powerOffAlert());

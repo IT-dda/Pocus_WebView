@@ -127,6 +127,32 @@
   // drawing that to the screen, we can change its size and/or apply
   // other changes before drawing it.
 
+  const U_NOTI_TITLE = '🔔 상체 알림';
+  const NOTI_ICON = '/image/exercising.png';
+  const BEEP_SOUND = '/sound/beepSound.mp3';
+  const UPPER_MSG = ' 자세가 인식되었습니다. 자세를 바르게 해주세요!';
+  const UPPER_POSE = [
+    '바른',
+    '거북목',
+    '왼쪽으로 기울어진 어깨',
+    '오른쪽으로 기울어진 어깨',
+    '왼쪽으로 기울어진 고개',
+    '오른쪽으로 기울어진 고개',
+    '왼손으로 턱 괸',
+    '오른손으로 턱 괸',
+  ];
+  function notify_upper(upper) {
+    // let upper = document.querySelector('#upper').innerHTML;
+    console.log(UPPER_POSE[upper] + ' 자세가 인식되었습니다.');
+    const audio = new Audio(BEEP_SOUND);
+    audio.play();
+    let notification = new Notification(U_NOTI_TITLE, {
+      icon: NOTI_ICON, // 나중에 바꾸기
+      body: UPPER_POSE[upper] + UPPER_MSG,
+    });
+    // console.log(notification);
+  }
+
   function takepicture() {
     const context = canvas.getContext('2d');
 
@@ -163,6 +189,10 @@
       })
         .then((res) => {
           console.log(res.data);
+          if (res.data.isCorrect > 0) {
+            console.log(res.data.isCorrect);
+            notify_upper(res.data.isCorrect);
+          }
         })
         .catch((err) => {
           console.log(err);
