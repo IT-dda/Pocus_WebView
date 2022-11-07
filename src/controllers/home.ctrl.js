@@ -1,7 +1,6 @@
 // 'use strict';
 
 const db = require('../config/database');
-//const portName = require('../config/ss');
 
 var request = require('request');
 const axios = require('axios');
