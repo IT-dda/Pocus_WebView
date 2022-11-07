@@ -25,7 +25,7 @@
 
 .init_body {
   height: 500px;
-  margin-bottom: calc(var(--base-space) * 5);
+  margin-bottom: calc(var(--base-space) * 17);
 }
 
 .init_body p {
@@ -67,6 +67,7 @@
   margin-bottom: calc(var(--base-space) * 2);
 }
 
+.pocus_page .lower_box .sensor_box,
 .init_page .lower_box .sensor_box {
   margin-top: calc(var(--base-space) * 6);
   position: relative;
@@ -82,12 +83,31 @@
   word-break: break-all;
 }
 
+.pocus_page .sensors,
 .init_page .sensors {
   position: relative;
-  width: 50%;
   height: fit-content;
   margin: auto;
   aspect-ratio: 1 / 1;
+}
+
+.pocus_page .lower_box .sensor_box {
+  margin-top: 0;
+}
+
+.pocus_page .sensors {
+  width: 40%;
+}
+
+.init_page .sensors {
+  width: 50%;
+}
+
+.pocus_page .lower_box .sensor_box .sensor {
+  position: absolute;
+  width: 46%;
+  height: 46%;
+  border-radius: 50%;
 }
 
 .init_page .lower_box .sensor_box .sensor {
@@ -117,6 +137,7 @@
   left: 52%;
 }
 
+.pocus_page .lower_box .sensor_box img,
 .init_page .lower_box .sensor_box img {
   width: 400px;
   height: 400px;
@@ -138,12 +159,14 @@
 }
 
 @media screen and (min-width: 992px) {
+  .pocus_page .sensors,
   .init_page .sensors {
     width: 40%;
   }
 }
 
 @media screen and (min-width: 1400px) {
+  .pocus_page .sensors,
   .init_page .sensors {
     width: 38%;
   }

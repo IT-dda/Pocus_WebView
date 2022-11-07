@@ -75,32 +75,6 @@ const output = {
     console.log('POST /login is running...');
     let loginParam = [req.body.id, req.body.password];
 
-<<<<<<< HEAD
-    db.query('select * from user where id=?', loginParam[0], (err, row) => {
-      if (err) console.error('error on finding user with id : ' + err);
-
-      if (row.length > 0) {
-        console.log('id exists');
-
-        if (loginParam[1] === row[0].password) {
-          console.log('login success');
-          req.session.isLogined = true;
-          req.session.loginData = loginParam[0];
-          req.session.userid = row[0].user_id;
-          req.session.save((err) => {
-            if (err) console.error('cant save session : ' + err);
-            return req.session.save(() => {
-              res.redirect('/');
-            });
-          });
-        } else {
-          req.session.save(() => {
-            console.log('wrong password');
-            req.flash('loginResult', 'fail');
-            return req.session.save(() => {
-              res.redirect('/login');
-            });
-=======
     let conn = null;
     let row;
     try {
@@ -125,7 +99,6 @@ const output = {
           if (err) console.error('cant save session : ' + err);
           return req.session.save(() => {
             res.redirect('/');
->>>>>>> 117d3b32e7ecc78ec646168c38bc42f7e45ca284
           });
         });
       } else {

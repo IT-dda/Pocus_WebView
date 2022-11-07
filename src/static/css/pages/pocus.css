@@ -35,12 +35,11 @@
   flex-direction: column;
 }
 
-<<<<<<< HEAD
 .sensor_box {
   position: relative;
   border-radius: 5px;
   background-color: var(--color-white);
-  background-image: url("../../image/armchair.png");
+  background-image: url('../../image/armchair.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -51,7 +50,10 @@
 
 .pocus_page .sensors {
   position: relative;
-  width: 50%;
+  /* width: 40%; */
+  left: 0.5%;
+  height: fit-content;
+  /* height: 40%; */
   margin: auto;
   aspect-ratio: 1 / 1;
 }
@@ -62,8 +64,8 @@
 
 .pocus_page .sensor_box .sensor {
   position: absolute;
-  width : 48%;
-  height : 48%;
+  width: 48%;
+  height: 48%;
   border-radius: 50%;
 }
 
@@ -89,16 +91,15 @@
 
 @media screen and (min-width: 1200px) {
   .pocus_page .sensors {
-    width: 40%;
+    width: 36%;
   }
 }
 
 @media screen and (min-width: 1400px) {
   .pocus_page .sensors {
-    width: 35%;
+    width: 32%;
   }
 }
-=======
 /* webcamTest */
 
 #video {
@@ -157,4 +158,3 @@
 .hidden {
   visibility: hidden;
 }
->>>>>>> 117d3b32e7ecc78ec646168c38bc42f7e45ca284

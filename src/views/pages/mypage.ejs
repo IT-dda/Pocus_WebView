@@ -71,22 +71,13 @@
                     <tr>
                       <th scope="col" class="w_10">No</th>
                       <th scope="col" class="w_30">Date</th>
-<<<<<<< HEAD
-                      <th scope="col" class="w_30">Log</th>
-=======
                       <th scope="col" class="w_30">Type</th>
                       <th scope="col" class="w_30">Sensor</th>
->>>>>>> 117d3b32e7ecc78ec646168c38bc42f7e45ca284
                     </tr>
                   </thead>
                   <tbody>
                     <% for (let i=0; i < logData.length; i++) { %>
                     <tr>
-<<<<<<< HEAD
-                      <th scope="row" class="w_10"><%= i+1 %></th>
-                      <td class="w_30"><%= logs[i].date %></td>
-                      <td class="w_30"><%= logs[i].log %></td>
-=======
                       <th scope="row" class="w_10">
                         <%= logData.length - i %>
                       </th>
@@ -97,7 +88,6 @@
                         ${logData[i].ss2},${logData[i].ss3},${logData[i].ss4}` :
                         "-" %>
                       </td>
->>>>>>> 117d3b32e7ecc78ec646168c38bc42f7e45ca284
                     </tr>
                     <% } %>
                   </tbody>

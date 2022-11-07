@@ -15,7 +15,7 @@
   // width to the value defined here, but the height will be
   // calculated based on the aspect ratio of the input stream.
 
-  const TAKE_PIC_TIME = 5000;
+  const TAKE_PIC_TIME = 10000;
   const width = 640; // We will scale the photo width to this
   let height = 0; // This will be computed based on the input stream
 
@@ -130,9 +130,9 @@
   const U_NOTI_TITLE = '🔔 상체 알림';
   const NOTI_ICON = '/image/exercising.png';
   const BEEP_SOUND = '/sound/beepSound.mp3';
-  const UPPER_MSG = ' 자세가 인식되었습니다. 자세를 바르게 해주세요!';
+  const UPPER_MSG = ' 잘못된 자세가 인식되었습니다. 자세를 바르게 해주세요!';
   function notify_upper(upper) {
-    console.log(UPPER_POSE[upper] + ' 자세가 인식되었습니다.');
+    // console.log(UPPER_POSE[upper] + ' 자세가 인식되었습니다.');
     const audio = new Audio(BEEP_SOUND);
     audio.play();
     let notification = new Notification(U_NOTI_TITLE, {
