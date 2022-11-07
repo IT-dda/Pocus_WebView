@@ -8,7 +8,7 @@ const NOTI_MSG =
 const STRETCHING_LINK = 'https://youtu.be/fFIL0rlRH78';
 const NOTI_TIME = notiTime ? notiTime : DEFAULT_TIME; // min
 const BEEP_SOUND = '/sound/beepSound.mp3';
-const UPPER_MSG = ' 자세가 인식되었습니다. 자세를 바르게 해주세요!';
+const UPPER_MSG = '잘못된 자세가 인식되었습니다. 자세를 바르게 해주세요!';
 const UPPER_POSE = [
   '바른',
   '거북목',
@@ -79,7 +79,8 @@ const notify_upper = () => {
   audio.play();
   let notification = new Notification(U_NOTI_TITLE, {
     icon: NOTI_ICON, // 나중에 바꾸기
-    body: UPPER_POSE[upper] + UPPER_MSG,
+    // body: UPPER_POSE[upper] + UPPER_MSG,
+    body: UPPER_MSG,
   });
   console.log(notification);
 };
